@@ -26,9 +26,6 @@ SECRET_KEY = 'ge8%+=pyb5(c7&#k=mg!q43u$@yeo$3xt2mwyxf9c4$&^vhxsa'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
-
 # Application definition
 
 INSTALLED_APPS = [
