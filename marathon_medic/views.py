@@ -1,6 +1,10 @@
 from django.shortcuts import render
+from .models import Medic
+from django.http import JsonResponse
 
 
 def get_medics_info(req):
-	pass
+	m = Medic.objects.all()
+
+	return JsonResponse({})
 
