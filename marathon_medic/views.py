@@ -4,7 +4,7 @@ from django.http import JsonResponse
 
 
 def get_medics_info(req):
-	m = Medic.objects.all()
+    m = Medic.objects.all()
 
-	return JsonResponse({})
+    return JsonResponse({})
 

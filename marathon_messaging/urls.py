@@ -20,8 +20,8 @@ from marathon_messaging import views
 
 urlpatterns = [
     path('new', views.new_message),
-	path('edit', views.edit_message),
-	path('delete', views.delete_message),
+    path('edit', views.edit_message),
+    path('delete', views.delete_message),
 
-	path('get_all', views.get_all),
+    path('get_all', views.get_all),
 ]

@@ -2,26 +2,26 @@ from django.shortcuts import render
 
 
 def create_task(req):
-	pass
+    pass
 
 
 def list_tasks(req):
-	pass
+    pass
 
 
 def reject_task(req):
-	pass
+    pass
 
 
 def accept_task(req):
-	pass
+    pass
 
 
 def comment_task(req):
-	pass
+    pass
 
 
 def assign_task(req):
-	pass
+    pass
 
 
