@@ -3,7 +3,7 @@ from django.http import JsonResponse
 
 
 def get_runners(req):
-    from marathon_utils.random import random_datetime
+    from marathon_utils.random_utils import random_datetime
     import random
 
     runners = [

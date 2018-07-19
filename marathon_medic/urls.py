@@ -19,6 +19,6 @@ from django.urls import path, include
 from marathon_medic import views
 
 urlpatterns = [
-    path('info', views.get_medics_info),
+    # path('info', views.get_medics_info),
 
 ]

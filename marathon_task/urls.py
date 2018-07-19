@@ -19,10 +19,10 @@ from django.urls import path, include
 from marathon_task import views
 
 urlpatterns = [
-    path('new', views.create_task),
-    path('list', views.list_tasks),
-    path('assign', views.assign_task),
-    path('reject', views.reject_task),
-    path('accpet', views.accept_task),
-    path('comment', views.comment_task),
+    # path('new', views.create_task),
+    # path('list', views.list_tasks),
+    # path('assign', views.assign_task),
+    # path('reject', views.reject_task),
+    # path('accpet', views.accept_task),
+    # path('comment', views.comment_task),
 ]
