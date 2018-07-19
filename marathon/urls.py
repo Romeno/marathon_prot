@@ -24,7 +24,7 @@ urlpatterns = [
 
     re_path(r'', include('marathon_main.urls')),
 
-    re_path(r'^participants/', include('marathon_participant.urls')),
+    re_path(r'^runners/', include('marathon_runner.urls')),
     re_path(r'^medics/', include('marathon_medic.urls')),
     # re_path(r'^judges/', include('marathon_judge.urls')),
     # re_path(r'^volunteers/', include('marathon_volunteer.urls')),

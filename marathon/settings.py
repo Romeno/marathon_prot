@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'marathon_common',
     'marathon_medic',
     'marathon_messaging',
-    'marathon_participant',
+    'marathon_runner',
     'marathon_signal',
     'marathon_task',
 
