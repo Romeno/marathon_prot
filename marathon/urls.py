@@ -23,9 +23,10 @@ urlpatterns = [
     re_path(r'admin/', admin.site.urls),
 
     re_path(r'', include('marathon_main.urls')),
+    re_path(r'', include('marathon_common.urls')),
 
     re_path(r'^runners/', include('marathon_runner.urls')),
-    re_path(r'^medics/', include('marathon_medic.urls')),
+    # re_path(r'^medics/', include('marathon_medic.urls')),
     # re_path(r'^judges/', include('marathon_judge.urls')),
     # re_path(r'^volunteers/', include('marathon_volunteer.urls')),
     # re_path(r'^transport/', include('marathon_transport.urls')),
@@ -34,8 +35,8 @@ urlpatterns = [
 
 
     # re_path(r'^messages/', include('marathon_message.urls')),
-    re_path(r'^tasks/', include('marathon_task.urls')),
-    re_path(r'^signals/', include('marathon_signal.urls')),
+    # re_path(r'^tasks/', include('marathon_task.urls')),
+    # re_path(r'^signals/', include('marathon_signal.urls')),
 ]
 
 # if settings.DEBUG:
