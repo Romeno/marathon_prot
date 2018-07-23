@@ -21,6 +21,11 @@ from marathon_common import views
 
 urlpatterns = [
     re_path('settings', views.get_settings),
-    re_path('routes/(?P<id>\d+)', views.get_route),
-
+    re_path('routes/(?P<id>\d+)/map', views.get_route_map),
+    re_path('routes/(?P<id>\d+)/heights', views.get_route_heights),
+    re_path('routes/(?P<id>\d+)/info', views.get_route_info),
+    re_path('routes/(?P<id>\d+)/start_region_map', views.get_start_region_map),
+    re_path('routes/(?P<id>\d+)/finish_region_map', views.get_finish_region_map),
+    re_path('expo', views.get_expo_info),
+    re_path('photo_frames', views.get_photo_frames),
 ]
