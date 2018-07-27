@@ -12,6 +12,9 @@ import server_keys
 def deploy(c):
     # change directory to project dir
     with c.cd(server_keys.APP_DIR):
+        # change the branch to develop
+        c.run("git checkout develop")
+
         # pull changes from git
         c.run("git pull")
 
