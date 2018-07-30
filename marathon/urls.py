@@ -20,12 +20,16 @@ from django.conf.urls.static import static
 
 
 urlpatterns = [
+    path('grappelli/', include('grappelli.urls')), # grappelli URLs should be before admin site URLs
     re_path(r'admin/', admin.site.urls),
 
-    re_path(r'', include('marathon_main.urls')),
+    # re_path(r'', include('marathon_main.urls')),
     re_path(r'', include('marathon_common.urls')),
 
     re_path(r'^runners/', include('marathon_runner.urls')),
+
+    re_path(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
+
     # re_path(r'^medics/', include('marathon_medic.urls')),
     # re_path(r'^judges/', include('marathon_judge.urls')),
     # re_path(r'^volunteers/', include('marathon_volunteer.urls')),

@@ -34,7 +34,7 @@ class Migration(migrations.Migration):
                 ('name', models.CharField(max_length=500, verbose_name='Route title')),
                 ('start_time', models.DateTimeField(blank=True, null=True, verbose_name='Time when all marathon activities start')),
                 ('end_time', models.DateTimeField(blank=True, null=True, verbose_name='Time when all marathon activities end')),
-                ('is_active', models.BooleanField(verbose_name='Is active?')),
+                ('is_active', models.BooleanField(verbose_name='Is active')),
             ],
             options={
                 'db_table': 'marathon_route',

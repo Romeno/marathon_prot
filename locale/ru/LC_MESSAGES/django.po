@@ -1,0 +1,145 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-07-30 05:27+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);\n"
+
+msgid "English"
+msgstr "Английский"
+
+msgid "Russian"
+msgstr "Русский"
+
+msgid "Marathon control system"
+msgstr "Центр управления марафоном"
+
+msgid "Marathons and routes"
+msgstr "Марафоны и дистанции"
+
+msgid "Marathon"
+msgstr "Марафон"
+
+msgid "Marathons"
+msgstr "Марафоны"
+
+msgid "Title of a marathon"
+msgstr "Название марафона"
+
+msgid "Time when all marathon activities start"
+msgstr "Время офоциального начала марафона"
+
+msgid "Time when all marathon activities end"
+msgstr "Время официального окончания марафона"
+
+msgid "Is active"
+msgstr "Активн_ый"
+
+msgid "Marathon route"
+msgstr "Дистанция марафона"
+
+msgid "Marathon routes"
+msgstr "Дистанции марафона"
+
+msgid "Route title"
+msgstr "Название дистанции марафона"
+
+msgid "Marathon runner"
+msgstr "Участник марафона"
+
+msgid "Marathon runners"
+msgstr "Участники марафона"
+
+msgid "Male"
+msgstr "Мужчина"
+
+msgid "Female"
+msgstr "Женщина"
+
+msgid "Id of runner got from client"
+msgstr "Id участника полученный от заказчика"
+
+msgid "First name"
+msgstr "Имя"
+
+msgid "Last name"
+msgstr "Фамилия"
+
+msgid "Age"
+msgstr "Возраст"
+
+msgid "Birthday"
+msgstr "День рождения"
+
+msgid "Gender"
+msgstr "Пол"
+
+msgid "Email"
+msgstr "Адрес электронной почты"
+
+msgid "Citizenship"
+msgstr "Гражданство"
+
+msgid "Phone number"
+msgstr "Телефон"
+
+msgid "User registration date"
+msgstr "Дата регистрации пользователя"
+
+msgid "Second phone"
+msgstr "Второй телефон"
+
+msgid "City"
+msgstr "Город"
+
+msgid "Emergency contact name"
+msgstr "Экстренный контакт, имя"
+
+msgid "Emergency contact phone"
+msgstr "Экстренный контакт, телефон"
+
+msgid "T-shirt size"
+msgstr "Размер футболки"
+
+msgid "Running club"
+msgstr "Название бегового клуба"
+
+msgid "Is runner a disabled person"
+msgstr "Участник является человеком с инвалидностью"
+
+msgid "Is runner a professional sportsman"
+msgstr "Участник является спортсменом"
+
+msgid "Is runner a child"
+msgstr "Участник является ребёнком"
+
+msgid "Is runner an elite sportsman"
+msgstr "Участник является элитным спортсменом"
+
+msgid "Marathon registration date and time"
+msgstr "Дата регистрации пользователя на данный марафон"
+
+msgid "Marathon in which runner participates"
+msgstr "Марафон, в котором участвует бегун"
+
+msgid "Route which runner will run on"
+msgstr "Дистанция на котолрой бежит участник"
+
+msgid "Run cluster letter"
+msgstr "Буква бегового кластера"
+
+msgid "Runner number"
+msgstr "Номер участника"

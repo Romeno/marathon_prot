@@ -22,5 +22,4 @@ urlpatterns = [
     # path('info', views.get_info),
     # path('add_medical_help_info', views.add_medical_help_info),
     re_path('list', views.get_runners),
-
 ]

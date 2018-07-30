@@ -13,36 +13,32 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 import os
 from .local_settings import *
 
+from django.utils.translation import gettext_lazy as _
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'ge8%+=pyb5(c7&#k=mg!q43u$@yeo$3xt2mwyxf9c4$&^vhxsa'
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
 
 # Application definition
 
 INSTALLED_APPS = [
+    'grappelli',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'marathon_main',
-    'marathon_common',
-    'marathon_medic',
-    'marathon_messaging',
-    'marathon_runner',
-    'marathon_signal',
-    'marathon_task',
 
+    'django_filters',
+    'rest_framework',
+
+    'marathon_common.apps.MarathonCommonConfig',
+    'marathon_medic.apps.MarathonMedicConfig',
+    'marathon_messaging.apps.MarathonMessagingConfig',
+    'marathon_runner.apps.MarathonRunnerConfig',
+    'marathon_signal.apps.MarathonSignalConfig',
+    'marathon_task.apps.MarathonTaskConfig',
 ]
 
 MIDDLEWARE = [
@@ -77,8 +73,6 @@ WSGI_APPLICATION = 'marathon.wsgi.application'
 
 
 # Password validation
-# https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators
-
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -94,11 +88,9 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
+##########################################
 # Internationalization
-# https://docs.djangoproject.com/en/2.0/topics/i18n/
-
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ru-ru'
 
 TIME_ZONE = 'Europe/Moscow'
 
@@ -108,9 +100,15 @@ USE_L10N = True
 
 USE_TZ = False
 
+LOCALE_PATHS = [os.path.join(BASE_DIR, 'locale')]
 
+LANGUAGES = [
+    ('en', _('English')),
+    ('ru', _('Russian')),
+]
+
+########################################
 # Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
 
@@ -119,3 +117,17 @@ STATIC_URL = '/static/'
 # ]
 
 MEDIA_URL = '/media/'
+
+########################################
+# Rest framework
+REST_FRAMEWORK = {
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.AllowAny'
+    ]
+}
+
+########################################
+# Grappelli
+GRAPPELLI_ADMIN_TITLE = _("Marathon control system")

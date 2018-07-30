@@ -7,6 +7,8 @@ import copy
 class MarathonRunner(models.Model):
     class Meta:
         db_table = 'marathon_runner'
+        verbose_name = _('Marathon runner')
+        verbose_name_plural = _('Marathon runners')
 
     MALE = 'M'
     FEMALE = 'F'
@@ -26,7 +28,7 @@ class MarathonRunner(models.Model):
     email = models.EmailField(max_length=1024, verbose_name=_("Email"))
     citizenship = models.CharField(max_length=1024, verbose_name=_("Citizenship"))
     phone = models.CharField(max_length=32, verbose_name=_("Phone number"))
-    user_register_date = models.DateField(verbose_name=_("Registration date"))
+    user_register_date = models.DateField(verbose_name=_("User registration date"))
     second_phone = models.CharField(blank=True, max_length=50, verbose_name=_("Second phone"))
     city = models.CharField(max_length=1024, verbose_name=_("City"))
     emergency_contact = models.CharField(max_length=1024, verbose_name=_("Emergency contact name"))
@@ -37,7 +39,7 @@ class MarathonRunner(models.Model):
     is_prof = models.NullBooleanField(blank=True, verbose_name=_("Is runner a professional sportsman"))
     is_child = models.BooleanField(verbose_name=_("Is runner a child"))
     is_elite = models.BooleanField(verbose_name=_("Is runner an elite sportsman"))
-    marathon_registration_datetime = models.DateTimeField(verbose_name=_("Registration time"))
+    marathon_registration_datetime = models.DateTimeField(verbose_name=_("Marathon registration date and time"))
     marathon = models.ForeignKey(Marathon, models.DO_NOTHING, verbose_name=_("Marathon in which runner participates"))
     route = models.ForeignKey(MarathonRoute, models.DO_NOTHING, verbose_name=_("Route which runner will run on"))
     cluster_run_letter = models.CharField(max_length=10, verbose_name=_("Run cluster letter"))
@@ -77,3 +79,7 @@ class MarathonRunner(models.Model):
                     cluster_run_letter=runner_copy[23],
                     runner_number=runner_copy[24],
                     is_active=True)
+
+    def __str__(self):
+        return "{}) {} {}".format(self.runner_number, self.last_name, self.first_name)
+

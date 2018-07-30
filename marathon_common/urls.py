@@ -19,6 +19,7 @@ from django.urls import path, include, re_path
 
 from marathon_common import views
 
+
 urlpatterns = [
     re_path('settings', views.get_settings),
     re_path('routes/(?P<id>\d+)/map', views.get_route_map),
@@ -28,4 +29,5 @@ urlpatterns = [
     re_path('routes/(?P<id>\d+)/finish_region_map', views.get_finish_region_map),
     re_path('expo', views.get_expo_info),
     re_path('photo_frames', views.get_photo_frames),
+
 ]
