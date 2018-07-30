@@ -220,12 +220,16 @@ def get_expo_info(req):
     return JsonResponse(expo)
 
 
-def get_start_region_map(req):
-    return JsonResponse({})
+def get_start_region_map(req, id):
+    route = MarathonRoute.objects.get(pk=id)
+
+    return HttpResponseRedirect(route.map.url)
 
 
-def get_finish_region_map(req):
-    return JsonResponse({})
+def get_finish_region_map(req, id):
+    route = MarathonRoute.objects.get(pk=id)
+
+    return HttpResponseRedirect(route.map.url)
 
 
 def get_photo_frames(req):
