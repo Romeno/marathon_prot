@@ -1,6 +1,6 @@
 # -*- coding: utf-8
 from django.shortcuts import render
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponseRedirect
 
 from .models import Marathon, MarathonRoute
 
@@ -34,7 +34,9 @@ def get_settings(req):
 
 
 def get_route_map(req, id):
-    return JsonResponse({})
+    route = MarathonRoute.objects.get(pk=id)
+
+    return HttpResponseRedirect(route.map.url)
 
 
 def get_route_heights(req, id):

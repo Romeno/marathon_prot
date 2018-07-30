@@ -22,6 +22,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 INSTALLED_APPS = [
     'grappelli',
+    'filebrowser',
 
     'django.contrib.admin',
     'django.contrib.auth',
@@ -131,3 +132,26 @@ REST_FRAMEWORK = {
 ########################################
 # Grappelli
 GRAPPELLI_ADMIN_TITLE = _("Marathon control system")
+
+
+########################################
+# File browser
+FILEBROWSER_DIRECTORY = 'uploads/'
+FILEBROWSER_MAX_UPLOAD_SIZE = 50*1024*1024
+FILEBROWSER_NORMALIZE_FILENAME = False
+FILEBROWSER_OVERWRITE_EXISTING = False
+FILEBROWSER_DEFAULT_PERMISSIONS = 0o766
+FILEBROWSER_EXTENSIONS = {
+    'Image': ['.jpg', '.jpeg', '.gif', '.png', '.tif', '.tiff', ''],
+    'Document': ['.pdf', '.doc', '.rtf', '.txt', '.xls', '.csv', '.xlsx', '.docx', '.djvu', ''],
+    'Video': ['.mov', '.wmv', '.mpeg', '.mpg', '.avi', '.rm', '.ogv'],
+    'Audio': ['.mp3', '.mp4', '.wav', '.aiff', '.midi', '.m4p', '.ogg'],
+    'GeoJSON': ['.json', '.geojson'],
+}
+FILEBROWSER_SELECT_FORMATS = {
+    'file': ['Image', 'Document', 'Video', 'Audio'],
+    'image': ['Image'],
+    'document': ['Document'],
+    'media': ['Video', 'Audio'],
+    'geojson': ['GeoJSON'],
+}

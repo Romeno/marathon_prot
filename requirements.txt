@@ -9,3 +9,4 @@ Markdown==2.6.11
 git+git://github.com/Romeno/chronotrack@master#chronotrack
 django-grappelli==2.11.1
 django-filebrowser==3.10.1
+Pillow==5.2.0

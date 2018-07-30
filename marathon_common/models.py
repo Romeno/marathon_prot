@@ -1,5 +1,7 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
+from filebrowser.fields import FileBrowseField
+from django.conf import settings
 
 
 class Marathon(models.Model):
@@ -28,6 +30,7 @@ class MarathonRoute(models.Model):
     start_time = models.DateTimeField(blank=True, null=True, verbose_name=_("Time when all marathon activities start"))
     end_time = models.DateTimeField(blank=True, null=True, verbose_name=_("Time when all marathon activities end"))
     # map_url = models.CharField(max_length=2083, verbose_name=_("Url of a map created using Yandex Maps constructor"))
+    map = FileBrowseField(max_length=1024, extensions=settings.FILEBROWSER_EXTENSIONS['GeoJSON'], format='GeoJSON', verbose_name=_("GeoJSON of exported Yandex map"))
 
     is_active = models.BooleanField(verbose_name=_("Is active"))
 
