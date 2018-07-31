@@ -22,33 +22,33 @@ def get_distance_between_points(p1, p2):
     return d
 
 
-def get_route_elevation(route):
+def get_route_elevation(route_in):
     """
     Get elevation data for a route
     :param route: list of coordinates. coordinates in YM format - [long, lat]
     :return: list of elevation data
     """
-    if not route:
+    if not route_in:
         return []
 
     gmaps = gm.Client(key='AIzaSyCo5Sy_e4yy2QHMmieUEdiYYBjmwAxixUw')
 
-    elevation = []
-    p1 = route[0][::-1]
-    first = True
-    for p2 in route[1:]:
-        p2 = p2[::-1]
+    route = route_in[:]             # create copy
+    p1 = route[0] = route[0][::-1]  # need to reverse coordinates into [lat, long]
+    overall_dist = 0                # we need to count overall distance of the route
+    i = 1
+    while i < len(route):
+        p2 = route[i] = route[i][::-1] # need to reverse coordinates into [lat, long]
         d = get_distance_between_points(p1, p2)
-
-        e = gmaps.elevation_along_path([p1, p2], math.ceil(d / 1000) + 1)
-        if first:
-            elevation.extend(e)
-        else:
-            elevation.extend(e[1:])
+        overall_dist += d
         p1 = p2
-        first = False
+        i += 1
 
-    return elevation
+    # we feed overall distance with points of the route to elevation api
+    # we sample this path with 1 km step
+    e = gmaps.elevation_along_path(route, math.ceil(overall_dist / 1000) + 1)
+
+    return e
 
 
 
