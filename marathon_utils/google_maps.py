@@ -51,8 +51,6 @@ def get_route_elevation(route_in):
     return e
 
 
-
-
 if __name__ == "__main__":
     elevation = get_route_elevation([
                [

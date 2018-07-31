@@ -10,3 +10,4 @@ git+git://github.com/Romeno/chronotrack@master#chronotrack
 django-grappelli==2.11.1
 django-filebrowser==3.10.1
 Pillow==5.2.0
+googlemaps==3.0.2
