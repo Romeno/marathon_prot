@@ -44,6 +44,7 @@ class MarathonRunner(models.Model):
     route = models.ForeignKey(MarathonRoute, models.DO_NOTHING, verbose_name=_("Route which runner will run on"))
     cluster_run_letter = models.CharField(max_length=10, verbose_name=_("Run cluster letter"))
     runner_number = models.IntegerField(verbose_name=_("Runner number"))
+    place = models.IntegerField(blank=True, null=True, verbose_name=_("Current runner place"))
 
     is_active = models.BooleanField(verbose_name=_("Is active"))
 
@@ -78,6 +79,7 @@ class MarathonRunner(models.Model):
                     route=runner_copy[22],
                     cluster_run_letter=runner_copy[23],
                     runner_number=runner_copy[24],
+                    place=runner_copy[25],
                     is_active=True)
 
     def __str__(self):

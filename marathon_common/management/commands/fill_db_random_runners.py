@@ -10,7 +10,9 @@ class Command(BaseCommand):
         parser.add_argument('--count', default=1000,  type=int, help='Number of runners to fill')
 
     def handle(self, *args, **options):
-        runners = generate_runners(options['count'])
+        count = options.get('count')
+
+        runners = generate_runners(count)
         for r in runners:
             runner = MarathonRunner.from_list(r)
             runner.save()

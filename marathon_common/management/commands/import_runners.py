@@ -1,22 +1,22 @@
+import sys
+import argparse
+
 from django.core.management.base import BaseCommand, CommandError
-from marathon_utils.runners_utils import import_runners
+from marathon_utils.runners_utils import read_runners
+
+from marathon_runner.models import MarathonRunner
 
 
 class Command(BaseCommand):
-    help = 'imports runners from a CSV file'
+    help = 'imports runners from a CSV file into DB'
 
-    # def add_arguments(self, parser):
-    #     parser.add_argument('csv', nargs='+', type=int)
+    def add_arguments(self, parser):
+        parser.add_argument('file', type=str, help='File name to import runners from')
 
     def handle(self, *args, **options):
-        pass
-        # for poll_id in options['poll_id']:
-        #     try:
-        #         poll = Poll.objects.get(pk=poll_id)
-        #     except Poll.DoesNotExist:
-        #         raise CommandError('Poll "%s" does not exist' % poll_id)
-        #
-        #     poll.opened = False
-        #     poll.save()
-        #
-        #     self.stdout.write(self.style.SUCCESS('Successfully closed poll "%s"' % poll_id))
+        file_from = options.get('file')
+
+        runners = read_runners(file_from)
+        for r in runners:
+            runner = MarathonRunner.from_list(r)
+            runner.save()
