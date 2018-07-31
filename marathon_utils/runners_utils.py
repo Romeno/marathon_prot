@@ -20,6 +20,7 @@ def generate_runners(count):
     :return: list of runners. runner is a list of properties
     """
     runners = []
+    places = list(range(1, 1001))
 
     for i in range(count):
         dob = r_utils.random_datetime(datetime.datetime(year=1900, month=1, day=1), to_time=datetime.datetime.now())
@@ -57,7 +58,7 @@ def generate_runners(count):
             random.choice(['10 км', '42,2 км Московский Марафон 2018']),    # route
             random.choice(['A', 'B', 'C', 'D', 'E', 'F']),                  # cluster_run_letter
             random.randint(0, 100000),                                      # runner_number
-            random.randint(1, count + 1),                                   # place
+            places.pop(random.randint(0, len(places) - 1)),                 # place
         ])
 
     return runners

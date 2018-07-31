@@ -39,9 +39,10 @@ def get_runners(req):
 
     if search:
         qss = search_runner(qs, search)
-        runners = []
-        for qs_ in qss:
-            runners.extend(list(qs_.all()[:50]))
+        runners = qss.all()[offset:offset + limit]
+        # runners = []
+        # for qs_ in qss:
+        #     runners.extend(list(qs_.all()[:50]))
     else:
         runners = qs.all()[offset:offset + limit]
 
@@ -89,6 +90,9 @@ def search_runner(qs, search_by):
     #     qs1 = qs.filter(first_name__contains=words[0])
     #     # qs2 = qs.filter(first_name__contains=words[0])
     #     # qs2 = qs.filter(first_name=words[0])
-    qs1 = qs.filter(first_name__contains=words[0])
-    qs2 = qs.filter(last_name__contains=words[0])
-    return qs1, qs2
+    # if words:
+    #     qs1 = qs.filter(first_name__contains=words[0])
+    #     qs2 = qs.filter(last_name__contains=words[0])
+
+    return qs
+
