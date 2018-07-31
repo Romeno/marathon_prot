@@ -3,6 +3,8 @@ from django.shortcuts import render
 from django.http import JsonResponse, HttpResponseRedirect
 
 from .models import Marathon, MarathonRoute
+from marathon_utils.yandex_maps import parse_geojson
+from marathon_utils.google_maps import get_route_elevation
 
 
 def get_settings(req):
@@ -35,12 +37,19 @@ def get_settings(req):
 
 def get_route_map(req, id):
     route = MarathonRoute.objects.get(pk=id)
+    with open(route.map.path_full, encoding="utf_8") as f:
+        parsed = parse_geojson(f)
 
-    return HttpResponseRedirect(route.map.url)
+    return JsonResponse(parsed)
 
 
 def get_route_heights(req, id):
-    return JsonResponse({})
+    route = MarathonRoute.objects.get(pk=id)
+    with open(route.map.path_full, encoding="utf_8") as f:
+        parsed = parse_geojson(f)
+    elevation = get_route_elevation(parsed["route"])
+
+    return JsonResponse({"points": elevation})
 
 
 def get_route_info(req, id):

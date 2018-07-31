@@ -31,7 +31,7 @@ def get_route_elevation(route_in):
     if not route_in:
         return []
 
-    gmaps = gm.Client(key='AIzaSyCo5Sy_e4yy2QHMmieUEdiYYBjmwAxixUw')
+    gmaps = gm.Client(key=settings.GOOGLE_CLOUD_API_KEY)
 
     route = route_in[:]             # create copy
     p1 = route[0] = route[0][::-1]  # need to reverse coordinates into [lat, long]
