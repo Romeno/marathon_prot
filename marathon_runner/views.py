@@ -1,3 +1,5 @@
+import math
+
 from django.shortcuts import render
 from django.http import JsonResponse, HttpResponseBadRequest
 from marathon_utils.exceptions import InvalidQueryParamValueException
@@ -39,14 +41,20 @@ def get_runners(req):
 
     if search:
         qss = search_runner(qs, search)
+        count = qss.count()
         runners = qss.all()[offset:offset + limit]
         # runners = []
         # for qs_ in qss:
         #     runners.extend(list(qs_.all()[:50]))
     else:
+        count = qs.count()
         runners = qs.all()[offset:offset + limit]
 
+    page_count = int(math.ceil(count / limit))
     runners_json = {
+        "overall_count": count,
+        "pages": page_count,
+        "current_page": int(math.ceil((offset + 1) / limit)),
         "runners": [{
                 "runnerId": r.pk,
                 "runnerNumber": r.runner_number,
