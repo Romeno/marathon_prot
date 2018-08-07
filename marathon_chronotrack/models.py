@@ -1,7 +1,9 @@
-from django.db import models
-from marathon_common.models import Marathon, MarathonRoute
-from django.utils.translation import gettext_lazy as _
 import copy
+
+from django.db import models
+from django.utils.translation import gettext_lazy as _
+
+from marathon_marathons.models import MarathonRoute, Marathon
 
 
 class MarathonRunner(models.Model):
@@ -84,4 +86,72 @@ class MarathonRunner(models.Model):
 
     def __str__(self):
         return "{}) {} {}".format(self.runner_number, self.last_name, self.first_name)
+
+
+class CtBracket(models.Model):
+    class Meta:
+        db_table = 'ct_bracket'
+        verbose_name = _('Bracket')
+        verbose_name_plural = _('Brackets')
+
+    name = models.CharField(max_length=1024, verbose_name=_("Bracket name"))
+    route = models.ForeignKey(MarathonRoute, on_delete=models.CASCADE, verbose_name=_("Bracket route"))
+    # start_time = models.DateTimeField(blank=True, null=True, verbose_name=_("Time when all marathon activities start"))
+    # end_time = models.DateTimeField(blank=True, null=True, verbose_name=_("Time when all marathon activities end"))
+    # # map_url = models.CharField(max_length=2083, verbose_name=_("Url of a map created using Yandex Maps constructor"))
+    #
+    # map = FileBrowseField(max_length=2048, extensions=settings.FILEBROWSER_EXTENSIONS['GeoJSON'], format='GeoJSON', verbose_name=_("GeoJSON of exported Yandex Constructor map of the route"))
+    # parsed_map = models.TextField(blank=True)
+    # raw_elevation_data = models.TextField(blank=True)
+    #
+    # start_region_map = FileBrowseField(max_length=2048, extensions=settings.FILEBROWSER_EXTENSIONS['GeoJSON'], format='GeoJSON', verbose_name=_("GeoJSON of exported Yandex Constructor map of the start region"))
+    # parsed_start_region_map = models.TextField(blank=True)
+    #
+    # finish_region_map = FileBrowseField(max_length=2048, extensions=settings.FILEBROWSER_EXTENSIONS['GeoJSON'], format='GeoJSON', verbose_name=_("GeoJSON of exported Yandex Constructor map of the finish region"))
+    # parsed_finish_region_map = models.TextField(blank=True)
+
+    def __str__(self):
+        return self.name
+
+
+class CtTimingPoint(models.Model):
+    class Meta:
+        db_table = 'ct_timing_point'
+        verbose_name = _('Timing point')
+        verbose_name_plural = _('Timing points')
+
+    name = models.CharField(max_length=1024, verbose_name=_("Timing point name"))
+    route = models.ForeignKey(MarathonRoute, on_delete=models.CASCADE, verbose_name=_("Marathon route of the timing point"))
+
+    def __str__(self):
+        return self.name
+
+
+class CtInterval(models.Model):
+    class Meta:
+        db_table = 'ct_interval'
+        verbose_name = _('Interval')
+        verbose_name_plural = _('Interval')
+
+    name = models.CharField(max_length=1024, verbose_name=_("Interval name"))
+    # route = models.ForeignKey(MarathonRoute, on_delete=models.CASCADE, verbose_name=_("Marathon route of the interval"))
+
+    def __str__(self):
+        return self.name
+
+
+class CtIntervalResult(models.Model):
+    class Meta:
+        db_table = 'ct_interval_result'
+        verbose_name = _('Interval result')
+        verbose_name_plural = _('Interval results')
+
+    interval = models.ForeignKey(CtInterval, on_delete=models.CASCADE, verbose_name=_("Interval of the result measurement"))
+    runner = models.ForeignKey(MarathonRunner, on_delete=models.CASCADE, verbose_name=_("Runner for which results are measured"))
+    chip_time = models.IntegerField(verbose_name=_("Chip time of a runner"))
+
+    # def __str__(self):
+    #     return self.name
+
+
 

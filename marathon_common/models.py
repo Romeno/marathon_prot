@@ -1,38 +1,55 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
-from filebrowser.fields import FileBrowseField
 from django.conf import settings
 
+from filebrowser.fields import FileBrowseField
 
-class Marathon(models.Model):
+
+class PhotoFrame(models.Model):
     class Meta:
-        db_table = 'marathon'
-        verbose_name = _('Marathon')
-        verbose_name_plural = _('Marathons')
+        db_table = 'marathon_photo_frame'
+        verbose_name = _('Photo frame')
+        verbose_name_plural = _('Photo frames')
 
-    name = models.CharField(max_length=1024, verbose_name=_("Title of a marathon"))
-    start_time = models.DateTimeField(verbose_name=_("Time when all marathon activities start"))
-    end_time = models.DateTimeField(verbose_name=_("Time when all marathon activities end"))
+    image = FileBrowseField(max_length=2048, extensions=settings.FILEBROWSER_EXTENSIONS['Image'], format='Image', verbose_name=_("Photo frame image"))
 
     is_active = models.BooleanField(default=True, verbose_name=_("Is active"))
 
     def __str__(self):
-        return self.name
+        return _('%(model_name)s #%(id)d') % {
+            'model_name': PhotoFrame._meta.verbose_name,
+            'id': self.pk
+        }
 
 
-class MarathonRoute(models.Model):
+class Announcement(models.Model):
     class Meta:
-        db_table = 'marathon_route'
-        verbose_name = _('Marathon route')
-        verbose_name_plural = _('Marathon routes')
+        db_table = 'marathon_announcement'
+        verbose_name = _('Announcement')
+        verbose_name_plural = _('Announcements')
 
-    name = models.CharField(max_length=1044, verbose_name=_("Route title")) # Растояния в км( число с запятой) {км} {Наименование забега}
-    start_time = models.DateTimeField(blank=True, null=True, verbose_name=_("Time when all marathon activities start"))
-    end_time = models.DateTimeField(blank=True, null=True, verbose_name=_("Time when all marathon activities end"))
-    # map_url = models.CharField(max_length=2083, verbose_name=_("Url of a map created using Yandex Maps constructor"))
-    map = FileBrowseField(max_length=1024, extensions=settings.FILEBROWSER_EXTENSIONS['GeoJSON'], format='GeoJSON', verbose_name=_("GeoJSON of exported Yandex map"))
+    text = models.TextField(verbose_name=_("Announcement text"))
+    send_date = models.DateTimeField(verbose_name=_("Announcement date and time"),
+                                     help_text=_("Announcement send date and time should be later than the current date and time"))
+    send_for_elite = models.BooleanField(verbose_name=_("Send only to elite participants"))
 
-    is_active = models.BooleanField(verbose_name=_("Is active"))
+    def __str__(self):
+        return "{}...".format(self.text[:50])
+
+
+class ExpoStand(models.Model):
+    class Meta:
+        db_table = 'marathon_expo_stand'
+        verbose_name = _('Expo stand')
+        verbose_name_plural = _('Expo stands')
+
+    name = models.CharField(max_length=100, verbose_name=_("Stand name"))
+    text = models.TextField(verbose_name=_("Announcement text"))
+
+    top_left_x = models.IntegerField(verbose_name=_("X of top left corner of expo stand on the map image"))
+    top_left_y = models.IntegerField(verbose_name=_("Y of top left corner of expo stand on the map image"))
+    width = models.IntegerField(verbose_name=_("Width of the expo stand on the map image"))
+    height = models.IntegerField(verbose_name=_("Height of the expo stand on the map image"))
 
     def __str__(self):
         return self.name

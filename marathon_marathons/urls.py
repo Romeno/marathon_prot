@@ -13,13 +13,15 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+
 from django.contrib import admin
 from django.urls import path, include, re_path
 
-from marathon_runner import views
+from . import views
 
 urlpatterns = [
-    # path('info', views.get_info),
-    # path('add_medical_help_info', views.add_medical_help_info),
-    re_path('list', views.get_runners),
+    re_path('routes/(?P<id>\d+)/map', views.get_route_map),
+    re_path('routes/(?P<id>\d+)/elevation', views.get_route_heights),
+    re_path('routes/(?P<id>\d+)/start_region_map', views.get_start_region_map),
+    re_path('routes/(?P<id>\d+)/finish_region_map', views.get_finish_region_map),
 ]

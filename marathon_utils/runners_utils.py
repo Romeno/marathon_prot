@@ -1,9 +1,10 @@
 # -*- coding: utf-8
 
 import csv
-import names
 import datetime
 import random
+
+import names
 
 if __name__ == "__main__":
     import date_utils as d_utils

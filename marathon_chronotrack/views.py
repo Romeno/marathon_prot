@@ -1,11 +1,17 @@
-import math
-
 from django.shortcuts import render
-from django.http import JsonResponse, HttpResponseBadRequest
+from django.http import JsonResponse
+
 from marathon_utils.exceptions import InvalidQueryParamValueException
 from marathon_utils.query import get_uint_query_param
+from . import models
 
-from .models import MarathonRunner
+
+def get_brackets(req, id):
+    brackets = models.CtBracket.objects.all()
+
+    resp = {}
+
+    return JsonResponse(resp)
 
 
 def get_runners(req):
@@ -22,7 +28,7 @@ def get_runners(req):
     if order_by and order_by not in ['alphabet_asc', 'alphabet_desc', 'bib_asc', 'bib_desc', 'place_asc', 'place_desc']:
         raise InvalidQueryParamValueException("'order_by' should be one of 'alphabet_asc', 'alphabet_desc', 'bib_asc', 'bib_desc', 'place_asc' or 'place_desc'")
 
-    qs = MarathonRunner.objects.all()
+    qs = models.MarathonRunner.objects.all()
     if order_by:
         if order_by == "alphabet_asc":
             qs = qs.order_by("last_name")
@@ -103,4 +109,3 @@ def search_runner(qs, search_by):
     #     qs2 = qs.filter(last_name__contains=words[0])
 
     return qs
-

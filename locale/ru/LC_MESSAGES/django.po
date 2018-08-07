@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-07-30 06:14+0300\n"
+"POT-Creation-Date: 2018-08-07 04:10+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -27,44 +27,14 @@ msgstr "Русский"
 msgid "Marathon control system"
 msgstr "Центр управления марафоном"
 
-msgid "Marathons and routes"
-msgstr "Марафоны и дистанции"
-
-msgid "Marathon"
-msgstr "Марафон"
-
-msgid "Marathons"
-msgstr "Марафоны"
-
-msgid "Title of a marathon"
-msgstr "Название марафона"
-
-msgid "Time when all marathon activities start"
-msgstr "Время офоциального начала марафона"
-
-msgid "Time when all marathon activities end"
-msgstr "Время официального окончания марафона"
-
-msgid "Is active"
-msgstr "Активн_ый"
-
-msgid "Marathon route"
-msgstr "Дистанция марафона"
-
-msgid "Marathon routes"
-msgstr "Дистанции марафона"
-
-msgid "Route title"
-msgstr "Название дистанции марафона"
-
-msgid "GeoJSON of exported Yandex map"
-msgstr "GeoJSON экспортированной Яндекс Карты"
-
-msgid "Marathon runners"
-msgstr "Участники марафона"
+msgid "Marathon Chronotrack"
+msgstr "Марафон Chronotrack"
 
 msgid "Marathon runner"
 msgstr "Участник марафона"
+
+msgid "Marathon runners"
+msgstr "Участники марафона"
 
 msgid "Male"
 msgstr "Мужчина"
@@ -146,3 +116,178 @@ msgstr "Буква бегового кластера"
 
 msgid "Runner number"
 msgstr "Номер участника"
+
+msgid "Current runner place"
+msgstr "Место бегуна в данный момент"
+
+msgid "Is active"
+msgstr "Активн_ый"
+
+msgid "Bracket"
+msgstr "Категория"
+
+msgid "Brackets"
+msgstr "Категории"
+
+msgid "Bracket name"
+msgstr "Имя категории"
+
+msgid "Bracket route"
+msgstr "Дистанция марафона, к которой привязана эта категория"
+
+msgid "Timing point"
+msgstr "Точка хронометража"
+
+msgid "Timing points"
+msgstr "Точки хронометража"
+
+msgid "Timing point name"
+msgstr "Название точки хронометража"
+
+msgid "Marathon route of the timing point"
+msgstr "Дистанция марафона, к которой привязана точка хронометража"
+
+msgid "Interval"
+msgstr "Промежуток"
+
+msgid "Interval name"
+msgstr "Название промежутка"
+
+msgid "Interval result"
+msgstr "Результат на промежутке"
+
+msgid "Interval results"
+msgstr "Результаты на промежутках"
+
+msgid "Interval of the result measurement"
+msgstr "Промежуток измерений"
+
+msgid "Runner for which results are measured"
+msgstr "Участник измерений"
+
+msgid "Chip time of a runner"
+msgstr "Время 'chip time' участника"
+
+msgid "Other entities"
+msgstr "Другие объекты"
+
+msgid "Mobile App and MCS texts"
+msgstr "Тексты мобильного приложения и ЦУМ"
+
+msgid "Photo frame"
+msgstr "Рамка для фото"
+
+msgid "Photo frames"
+msgstr "Рамки для фото"
+
+msgid "Photo frame image"
+msgstr "Картинка для рамки для фото"
+
+#, python-format
+msgid "%(model_name)s #%(id)d"
+msgstr "%(model_name)s №%(id)d"
+
+msgid "Announcement"
+msgstr "Оповещение"
+
+msgid "Announcements"
+msgstr "Оповещения"
+
+msgid "Announcement text"
+msgstr "Текст оповещения"
+
+msgid "Announcement date and time"
+msgstr "Дата и время посылки оповещения"
+
+msgid "Announcement send date and time should be later than the current date and time"
+msgstr "Время посылки оповещения должно быть позднее текущей даты и времени"
+
+msgid "Send only to elite participants"
+msgstr "Послать только элитным спортсменам"
+
+msgid "Expo stand"
+msgstr "Стэнд выставки"
+
+msgid "Expo stands"
+msgstr "Стэнды выставки"
+
+msgid "Stand name"
+msgstr "Название стэнда"
+
+msgid "X of top left corner of expo stand on the map image"
+msgstr "Координата X верхнего левого угла стэнда на карте (в пикселях)"
+
+msgid "Y of top left corner of expo stand on the map image"
+msgstr "Координата Y верхнего левого угла стэнда на карте (в пикселях)"
+
+msgid "Width of the expo stand on the map image"
+msgstr "Ширина стэнда на карте выставки в пикселях"
+
+msgid "Height of the expo stand on the map image"
+msgstr "Высота стэнда на карте выставки в пикселях"
+
+msgid "Marathons and routes"
+msgstr "Марафоны и дистанции"
+
+msgid "Marathon"
+msgstr "Марафон"
+
+msgid "Marathons"
+msgstr "Марафоны"
+
+msgid "Title of a marathon"
+msgstr "Название марафона"
+
+msgid "Time when all marathon activities start"
+msgstr "Время офоциального начала марафона"
+
+msgid "Time when all marathon activities end"
+msgstr "Время официального окончания марафона"
+
+msgid "Chronotrack event Id for this marathon"
+msgstr "Chronotrack Event ID данного мероприятия"
+
+msgid "Marathon route"
+msgstr "Дистанция марафона"
+
+msgid "Marathon routes"
+msgstr "Дистанции марафона"
+
+msgid "Marathon whose route it is"
+msgstr "Марафон, которому принадлежит эта дистанция"
+
+msgid "Route title"
+msgstr "Название дистанции марафона"
+
+msgid "GeoJSON of exported Yandex Constructor map of the route"
+msgstr "GeoJSON карты дистанции экспортированной из Яндекс Конструктора"
+
+msgid "GeoJSON of exported Yandex Constructor map of the start region"
+msgstr "GeoJSON карты старотового городка экспортированной из Яндекс Конструткора"
+
+msgid "GeoJSON of exported Yandex Constructor map of the finish region"
+msgstr "GeoJSON карты финишного городка экспортированной из Яндекс Конструткора"
+
+msgid "Chronotrack race Id for this marathon route"
+msgstr "Chronotrack Race ID данной дистанции"
+
+msgid "Marathon route heights"
+msgstr "Высоты дистанции марафона"
+
+msgid "Marathon routes heigths"
+msgstr "Высоты дистанций марафона"
+
+msgid "Route for which heights are specified"
+msgstr "Дистанция для которой указываются высоты"
+
+msgid "Latitude of the point on the route"
+msgstr "Широта точки на дистанции"
+
+msgid "longitude of the point on the route"
+msgstr "Долгота точки на дистанции"
+
+msgid "Elevation of the point in meters"
+msgstr "Высота над уровнем моря точки на дистанции в метрах"
+
+msgid "Resolution of the point elevation in meters"
+msgstr "Точность определения высоты над уровнем моря в метрах"

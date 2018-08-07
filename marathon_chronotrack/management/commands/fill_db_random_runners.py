@@ -1,6 +1,7 @@
 from django.core.management.base import BaseCommand, CommandError
+
 from marathon_utils.runners_utils import generate_runners
-from marathon_runner.models import MarathonRunner
+from marathon_chronotrack.models import MarathonRunner
 
 
 class Command(BaseCommand):
@@ -12,7 +13,11 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         count = options.get('count')
 
+        print('Creating {} runners'.format(count))
+
         runners = generate_runners(count)
         for r in runners:
             runner = MarathonRunner.from_list(r)
             runner.save()
+
+        print('Ready')

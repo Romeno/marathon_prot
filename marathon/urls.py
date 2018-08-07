@@ -23,12 +23,13 @@ from filebrowser.sites import site
 urlpatterns = [
     path('admin/filebrowser/', site.urls),
     path('grappelli/', include('grappelli.urls')), # grappelli URLs should be before admin site URLs
+    re_path(r'^tinymce/', include('tinymce.urls')),
     re_path(r'admin/', admin.site.urls),
 
     # re_path(r'', include('marathon_main.urls')),
     re_path(r'', include('marathon_common.urls')),
-
-    re_path(r'^runners/', include('marathon_runner.urls')),
+    re_path(r'', include('marathon_marathons.urls')),
+    re_path(r'', include('marathon_chronotrack.urls')),
 
     re_path(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 

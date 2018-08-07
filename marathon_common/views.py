@@ -1,10 +1,14 @@
 # -*- coding: utf-8
+import ast
+
 from django.shortcuts import render
 from django.http import JsonResponse, HttpResponseRedirect
 
-from .models import Marathon, MarathonRoute
+from . import models
+from marathon_marathons.models import Marathon, MarathonRoute
 from marathon_utils.yandex_maps import parse_geojson
 from marathon_utils.google_maps import get_route_elevation
+from marathon_utils.exceptions import DoesNotExistException
 
 
 def get_settings(req):
@@ -33,23 +37,6 @@ def get_settings(req):
         settings["marathon"]["marathon_routes"].append(route)
 
     return JsonResponse(settings)
-
-
-def get_route_map(req, id):
-    route = MarathonRoute.objects.get(pk=id)
-    with open(route.map.path_full, encoding="utf_8") as f:
-        parsed = parse_geojson(f)
-
-    return JsonResponse(parsed)
-
-
-def get_route_heights(req, id):
-    route = MarathonRoute.objects.get(pk=id)
-    with open(route.map.path_full, encoding="utf_8") as f:
-        parsed = parse_geojson(f)
-    elevation = get_route_elevation(parsed["route"])
-
-    return JsonResponse({"points": elevation})
 
 
 def get_route_info(req, id):
@@ -229,18 +216,16 @@ def get_expo_info(req):
     return JsonResponse(expo)
 
 
-def get_start_region_map(req, id):
-    route = MarathonRoute.objects.get(pk=id)
-
-    return HttpResponseRedirect(route.map.url)
-
-
-def get_finish_region_map(req, id):
-    route = MarathonRoute.objects.get(pk=id)
-
-    return HttpResponseRedirect(route.map.url)
-
-
 def get_photo_frames(req):
-    return JsonResponse({})
+    photos = PhotoFrame.objects.filter(is_active=True)
+    body = [{
+        "id": p.pk,
+        "image": p.image.url
+    } for p in photos]
+
+    resp = {
+        "photo_frames": body
+    }
+
+    return JsonResponse(resp)
 

@@ -4,7 +4,7 @@ import argparse
 from django.core.management.base import BaseCommand, CommandError
 from marathon_utils.runners_utils import read_runners
 
-from marathon_runner.models import MarathonRunner
+from marathon_chronotrack.models import MarathonRunner
 
 
 class Command(BaseCommand):

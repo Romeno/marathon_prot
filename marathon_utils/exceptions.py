@@ -12,6 +12,12 @@ class MarathonAPIException(MarathonException):
         super().__init__("{}: {}".format(error, description))
 
 
+class DoesNotExistException(MarathonAPIException):
+    """Exception raised when one of the query params has invalid value"""
+    def __init__(self, description):
+        super().__init__("object does not exist", description)
+
+
 class InvalidQueryParamValueException(MarathonAPIException):
     """Exception raised when one of the query params has invalid value"""
     def __init__(self, description):
