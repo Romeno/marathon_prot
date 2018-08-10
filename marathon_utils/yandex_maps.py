@@ -34,8 +34,11 @@ def parse_geojson(geojson):
                     caption = props["iconCaption"]
                     obj = {
                             "coords": g["coordinates"],
-                            "desc": props["description"]
                     }
+                    desc = props.get("description")
+                    if desc:
+                        obj["desc"] = desc
+
                     if caption == "Зона освежения":
                         ret["refresh_zones"].append(obj)
                     if caption == "Зона питания":
@@ -45,6 +48,10 @@ def parse_geojson(geojson):
                     if caption == "Точка хронометража":
                         ret["timing_points"].append(obj)
                     if caption == "Километр":
+                        num = props.get("iconContent")
+                        if num:
+                            obj["desc"] = num
+
                         ret["kilometers"].append(obj)
                     if caption == "Старт":
                         ret["start"] = obj

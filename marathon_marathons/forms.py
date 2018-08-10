@@ -40,7 +40,7 @@ class MarathonRouteAdminForm(forms.ModelForm):
         # parse geoJSON if new or map field was changed
         if self.instance._new or self.instance._map_changed:
             full_path = os.path.join(settings.MEDIA_ROOT, self.base_fields["map"].directory, data)
-            with open(full_path) as f:
+            with open(full_path, encoding='utf_8') as f:
                 try:
                     parsed = parse_geojson(f)
                     self.cleaned_data["_parsed_map"] = parsed
@@ -60,7 +60,7 @@ class MarathonRouteAdminForm(forms.ModelForm):
         # parse geoJSON if new or map field was changed
         if self.instance._new or self.instance._start_region_map_changed:
             full_path = os.path.join(settings.MEDIA_ROOT, self.base_fields["start_region_map"].directory, data)
-            with open(full_path) as f:
+            with open(full_path, encoding='utf_8') as f:
                 try:
                     parsed = parse_geojson(f)
                     self.cleaned_data["_parsed_start_region_map"] = parsed
@@ -80,7 +80,7 @@ class MarathonRouteAdminForm(forms.ModelForm):
         # parse geoJSON if new or map field was changed
         if self.instance._new or self.instance._finish_region_map_changed:
             full_path = os.path.join(settings.MEDIA_ROOT, self.base_fields["finish_region_map"].directory, data)
-            with open(full_path) as f:
+            with open(full_path, encoding='utf_8') as f:
                 try:
                     parsed = parse_geojson(f)
                     self.cleaned_data["_parsed_finish_region_map"] = parsed
