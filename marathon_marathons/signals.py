@@ -12,12 +12,12 @@ def save_route_heights(sender, **kwargs):
     route = kwargs["instance"]
     created = kwargs["created"]
 
-    if route.map_changed:
+    if route._map_changed:
         heights = models.MarathonHeight.objects.filter(route=route)
         for h in heights:
             h.delete()
 
-    if route.map_changed or created:
+    if route._map_changed or created:
         parsed_map = ast.literal_eval(route.parsed_map)
 
         elevation = get_route_elevation(parsed_map["route"])
