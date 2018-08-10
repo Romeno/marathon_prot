@@ -6,8 +6,6 @@ from django.http import JsonResponse, HttpResponseRedirect
 
 from . import models
 from marathon_marathons.models import Marathon, MarathonRoute
-from marathon_utils.yandex_maps import parse_geojson
-from marathon_utils.google_maps import get_route_elevation
 from marathon_utils.exceptions import DoesNotExistException
 
 
@@ -40,184 +38,42 @@ def get_settings(req):
 
 
 def get_route_info(req, id):
-    sample_text = """<b><i>What is Lorem Ipsum?</i></b>
-<b>Lorem Ipsum</b> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-
-<b><i>Why do we use it?</i></b>
-It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like)."""
+    top_level_menu = models.MenuItemGroup.objects.all()
 
     info = {
-        "menu": [
-            {
-                # "en": "General information",
-                "ru": "Общая информация",
-                "menu_items": [
-                    {
-                        # "en": "Schedule",
-                        "ru": "Расписание",
-                        "text": sample_text,
-                    },
-                    {
-                        # "en": "Awards",
-                        "ru": "Награждение",
-                        "text": sample_text,
-                    },
-                ]
-            },
-            {
-                # "en": "Registration",
-                "ru": "Регистрация",
-                "menu_items": [
-                    {
-                        # "en": "How to register",
-                        "ru": "Как зарегистрироваться",
-                        "text": sample_text,
-                    },
-                    {
-                        # "en": "Terms of participation",
-                        "ru": "Основные условия",
-                        "text": sample_text,
-                    },
-                    {
-                        # "en": "Cost",
-                        "ru": "Стоимость",
-                        "text": sample_text,
-                    },
-                    {
-                        # "en": "Qualification into elite",
-                        "ru": "Квалификация в элиту",
-                        "text": sample_text,
-                    },
-                ]
-            },
-            {
-                # "en": "Acquiring a bib number",
-                "ru": "Получение номера",
-                "menu_items": [
-                    {
-                        # "en": "Where and when",
-                        "ru": "Где и когда",
-                        "text": sample_text,
-                    },
-                    {
-                        # "en": "Terms of participation",
-                        "ru": "Что входит в пакет участника",
-                        "text": sample_text,
-                    },
-                    {
-                        # "en": "Cost",
-                        "ru": "Как получить пакет участника",
-                        "text": sample_text,
-                    },
-                    {
-                        # "en": "Medical certification",
-                        "ru": "Требования к медицинской справке",
-                        "text": sample_text,
-                    },
-                ]
-            },
-            {
-                # "en": "Sport exhibition",
-                "ru": "Спортивная выставка",
-                "menu_items": [
-                    {
-                        # "en": "Expo",
-                        "ru": "Экспо",
-                        "text": sample_text,
-                    },
-                ]
-            },
-            {
-                # "en": "Competition day",
-                "ru": "День соревнования",
-                "menu_items": [
-                    {
-                        # "en": "Start",
-                        "ru": "Старт",
-                        "text": sample_text,
-                    },
-                    {
-                        # "en": "Finish",
-                        "ru": "Финиш",
-                        "text": sample_text,
-                    },
-                    {
-                        # "en": "Pacemakers",
-                        "ru": "Пейсмейкеры",
-                        "text": sample_text,
-                    },
-                    {
-                        # "en": "Medical help",
-                        "ru": "Медицинская помощь",
-                        "text": sample_text,
-                    },
-                ]
-            },
-            {
-                # "en": "Where to stay",
-                "ru": "Где разместиться",
-                "text": sample_text,
-            },
-            {
-                # "en": "Fans",
-                "ru": "Болельщикам",
-                "menu_items": [
-                    {
-                        # "en": "General info",
-                        "ru": "Общие сведения",
-                        "text": sample_text,
-                    },
-                    {
-                        # "en": "Where to support the entrants",
-                        "ru": "Где поддержать участников",
-                        "text": sample_text,
-                    },
-                ]
-            },
-            {
-                # "en": "Music",
-                "ru": "Музыка",
-                "text": sample_text,
-            },
-            {
-                # "en": "Volunteers",
-                "ru": "Волонтёрам",
-                "text": sample_text,
-            },
-        ]
+        "menu": []
     }
+
+    for top_level_item in top_level_menu:
+        top_level_item_dict = {
+            "ru": top_level_item.title,
+            "menu_items": [
+            ]
+        }
+
+        menu_items = top_level_item.menuitem_set.objects.all()
+        for menu_item in menu_items:
+            top_level_item_dict["menu_items"].append({
+                # "en": menu_item.name,
+                "ru": menu_item.title,
+                "text": menu_item.text,
+            })
+
+        info["menu"].append(top_level_item_dict)
+
+    menu_items_no_top_level = models.MenuItem.objects.filter(group=None)
+    for mintl in menu_items_no_top_level:
+        info["menu"].append({
+            # "en": mintl.name,
+            "ru": mintl.title,
+            "text": mintl.text,
+        })
 
     return JsonResponse(info)
 
 
-def get_expo_info(req):
-    expo = {
-        "map": "http://server/someimg.png",
-        "stands": [
-            {
-                "name": "Coca-cola",
-                "website": "http://coca-cola.com",
-                "description": "<b>lorem ipsum</b>",
-                "categories": ["еда",],
-                "topLeft": [0,0],
-                "size": [100, 100],
-            },
-            {
-                "name": "Nike",
-                "website": "http://nike.com",
-                "description": "<b>lorem ipsum</b>",
-                "categories": ["экипировка", "одежда"],
-                "topLeft": [550, 30],
-                "size": [200, 20],
-            },
-        ]
-    }
-
-    return JsonResponse(expo)
-
-
 def get_photo_frames(req):
-    photos = PhotoFrame.objects.filter(is_active=True)
+    photos = models.PhotoFrame.objects.filter(is_active=True)
     body = [{
         "id": p.pk,
         "image": p.image.url

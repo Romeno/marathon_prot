@@ -1,4 +1,5 @@
 from django.contrib import admin
+
 from . import models
 from . import forms
 
@@ -12,6 +13,11 @@ class MarathonRouteAdmin(admin.ModelAdmin):
     #     return form
 
 
+class MarathonHeightAdmin(admin.ModelAdmin):
+    list_display = ('__str__', 'route')
+    ordering = ('route', 'pk')
+
+
 admin.site.register(models.Marathon)
 admin.site.register(models.MarathonRoute, MarathonRouteAdmin)
-admin.site.register(models.MarathonHeight)
+admin.site.register(models.MarathonHeight, MarathonHeightAdmin)

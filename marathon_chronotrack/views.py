@@ -1,3 +1,5 @@
+import math
+
 from django.shortcuts import render
 from django.http import JsonResponse
 
@@ -65,11 +67,38 @@ def get_runners(req):
                 "runnerId": r.pk,
                 "runnerNumber": r.runner_number,
                 "runnerName": r.first_name + " " + r.last_name,
-                "distance": 0,
-                "time": int(random_datetime().timestamp()),
-                "isAcceleration": random.choice([True, False]),
+                "age": r.age,
+                "birthday": r.birthday.timestamp(),
+                "gender": r.gender,
+                "email": r.email,
+                "phone": r.phone,
+                "user_register_date": r.user_register_date.timestamp(),
+                "second_phone": r.second_phone,
+                "city": r.city,
+                "emergency_contact": r.emergency_contact,
+                "distance": r.route.name,
+                "t_shirt_size": r.t_shirt_size,
+                "running_club": r.running_club,
+                "is_disabled" : r.is_disabled,
+                "is_prof": r.is_prof,
+                "is_child": r.is_child,
+                "is_elite": r.is_elite,
+                "marathon_registration_datetime": r.marathon_registration_datetime,
+                "cluster_run_letter": r.cluster_run_letter,
                 "citizenship": r.citizenship,
                 "place": r.place,
+                "times": [{
+                    "interval_id": 0,
+                    "timing_point_name": "some name",
+                    "chip_time": 0,
+                    "place": 0,
+                    "tempo": 0
+                }],
+                "category": {
+                    "category_id": 0,
+                    "name": "M40-44"
+                },
+                "isAcceleration": random.choice([True, False]),
             } for r in runners]
     }
 
@@ -77,7 +106,15 @@ def get_runners(req):
 
 
 def get_info(req):
-    pass
+    return JsonResponse({})
+
+
+def watch_runner(req, id_runner):
+    return JsonResponse({})
+
+
+def unwatch_runner(req, id_runner):
+    return JsonResponse({})
 
 
 def add_medical_help_info(req):

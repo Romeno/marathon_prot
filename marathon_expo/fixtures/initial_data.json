@@ -1,0 +1,35 @@
+[
+{
+    "model": "marathon_expo.expostand",
+    "pk": 1,
+    "fields": {
+        "name": "Nike",
+        "website": "https://www.nike.com/ru/ru_ru/",
+        "text": "<p>\u0421\u0442\u044d\u043d\u0434 \u043a\u043e\u043c\u043f\u0430\u043d\u0438\u0438 Nike</p>",
+        "top_left_x": 1,
+        "top_left_y": 1,
+        "width": 50,
+        "height": 50
+    }
+},
+{
+    "model": "marathon_expo.expostand",
+    "pk": 2,
+    "fields": {
+        "name": "Northenlion",
+        "website": "https://www.youtube.com/channel/UC3tNpTOHsTnkmbwztCs30sA",
+        "text": "<p>\u0421\u0442\u044d\u043d\u0434 \u0441\u0442\u0440\u0438\u043c\u0435\u0440\u0430 The Binding of Isaac \u0438 \u0434\u0440\u0443\u0433\u0438\u0445 \u0438\u0433\u0440 Northenlion-\u0430</p>",
+        "top_left_x": 70,
+        "top_left_y": 70,
+        "width": 50,
+        "height": 20
+    }
+},
+{
+    "model": "marathon_expo.expomap",
+    "pk": 1,
+    "fields": {
+        "image": "uploads/q.png"
+    }
+}
+]

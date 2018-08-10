@@ -1,8 +1,12 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 from django.conf import settings
+from django.core.exceptions import ValidationError
 
 from filebrowser.fields import FileBrowseField
+from tinymce.models import HTMLField
+
+from marathon_marathons.models import MarathonRoute
 
 
 class PhotoFrame(models.Model):
@@ -22,34 +26,37 @@ class PhotoFrame(models.Model):
         }
 
 
-class Announcement(models.Model):
+class MenuItemGroup(models.Model):
     class Meta:
-        db_table = 'marathon_announcement'
-        verbose_name = _('Announcement')
-        verbose_name_plural = _('Announcements')
+        db_table = 'marathon_menu_item_group'
+        verbose_name = _('Menu item group')
+        verbose_name_plural = _('Menu item groups')
 
-    text = models.TextField(verbose_name=_("Announcement text"))
-    send_date = models.DateTimeField(verbose_name=_("Announcement date and time"),
-                                     help_text=_("Announcement send date and time should be later than the current date and time"))
-    send_for_elite = models.BooleanField(verbose_name=_("Send only to elite participants"))
+    route = models.ForeignKey(MarathonRoute, on_delete=models.CASCADE, verbose_name=_("Route for which menu content is set"))
+    title = models.CharField(max_length=256, verbose_name=_("Menu item group title"))
 
     def __str__(self):
-        return "{}...".format(self.text[:50])
+        return "{} ({})".format(self.title, self.route.name)
 
 
-class ExpoStand(models.Model):
+class MenuItem(models.Model):
     class Meta:
-        db_table = 'marathon_expo_stand'
-        verbose_name = _('Expo stand')
-        verbose_name_plural = _('Expo stands')
+        db_table = 'marathon_menu_item'
+        verbose_name = _('Menu item')
+        verbose_name_plural = _('Menu items')
 
-    name = models.CharField(max_length=100, verbose_name=_("Stand name"))
-    text = models.TextField(verbose_name=_("Announcement text"))
-
-    top_left_x = models.IntegerField(verbose_name=_("X of top left corner of expo stand on the map image"))
-    top_left_y = models.IntegerField(verbose_name=_("Y of top left corner of expo stand on the map image"))
-    width = models.IntegerField(verbose_name=_("Width of the expo stand on the map image"))
-    height = models.IntegerField(verbose_name=_("Height of the expo stand on the map image"))
+    route = models.ForeignKey(MarathonRoute, on_delete=models.CASCADE, verbose_name=_("Route for which menu content is set"))
+    group = models.ForeignKey(MenuItemGroup, on_delete=models.CASCADE, blank=True, null=True, verbose_name=_("Menu item group"))
+    name = models.CharField(max_length=256, verbose_name=_("Menu item name used in server code"), help_text=_("Cannot be edited"))
+    title = models.CharField(max_length=256, verbose_name=_("Menu item title text"), help_text=_("You can dynamically change menu of the mobile app from here. Changing title of a menu item will change the menu item title in the hamburger menu."))
+    text = HTMLField(verbose_name=_("Contents of a page shown when user clicks menu item"))
 
     def __str__(self):
-        return self.name
+        return self.title
+
+    def full_clean(self, exclude=None, validate_unique=True, **kwargs):
+        if self.route.pk != self.group.route.pk:
+            raise ValidationError(_('Route of the group is not the same as route of the menu item'))
+
+        return super().full_clean()
+

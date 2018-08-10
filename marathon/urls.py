@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path, re_path, include
 from django.conf import settings
 from django.conf.urls.static import static
+
 from filebrowser.sites import site
 
 
@@ -30,6 +31,8 @@ urlpatterns = [
     re_path(r'', include('marathon_common.urls')),
     re_path(r'', include('marathon_marathons.urls')),
     re_path(r'', include('marathon_chronotrack.urls')),
+    re_path(r'', include('marathon_announcement.urls')),
+    re_path(r'', include('marathon_expo.urls')),
 
     re_path(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 

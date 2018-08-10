@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-08-07 04:10+0300\n"
+"POT-Creation-Date: 2018-08-10 11:38+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,276 +18,461 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);\n"
 
+#: .\marathon\settings.py:118
 msgid "English"
 msgstr "Английский"
 
+#: .\marathon\settings.py:119
 msgid "Russian"
 msgstr "Русский"
 
+#: .\marathon\settings.py:145
 msgid "Marathon control system"
 msgstr "Центр управления марафоном"
 
-msgid "Marathon Chronotrack"
-msgstr "Марафон Chronotrack"
+#: .\marathon_announcement\apps.py:7
+msgid "Marathon Announcements"
+msgstr "Оповещения ЦУМ"
 
+#: .\marathon_announcement\models.py:12
+msgid "Announcement"
+msgstr "Оповещение"
+
+#: .\marathon_announcement\models.py:13
+msgid "Announcements"
+msgstr "Оповещения"
+
+#: .\marathon_announcement\models.py:15
+msgid "Announcement text"
+msgstr "Текст оповещения"
+
+#: .\marathon_announcement\models.py:16
+msgid "Announcement date and time"
+msgstr "Дата и время посылки оповещения"
+
+#: .\marathon_announcement\models.py:17
+msgid "Announcement send date and time should be later than the current date and time"
+msgstr "Время посылки оповещения должно быть позднее текущей даты и времени"
+
+#: .\marathon_announcement\models.py:18
+msgid "Send only to elite participants"
+msgstr "Послать только элитным спортсменам"
+
+#: .\marathon_announcement\models.py:27
+msgid "Announcement Chronotrack template"
+msgstr "Шаблон Chronotrack оповещения"
+
+#: .\marathon_announcement\models.py:28
+msgid "Announcement Chronotrack templates"
+msgstr "Шаблоны Chronotrack оповещений"
+
+#: .\marathon_announcement\models.py:30
+msgid "Template text"
+msgstr "Текст шаблона"
+
+#: .\marathon_announcement\models.py:30
+msgid "The announcement about Chronotrack events will be sent to the mobile app users using this template"
+msgstr "Оповещения о событиях Chronotrack будут посылаться на мобильное приложения используя этот шаблон"
+
+#: .\marathon_chronotrack\apps.py:7
+msgid "Chronotrack"
+msgstr "Хронотрек (Chronotrack)"
+
+#: .\marathon_chronotrack\models.py:12
 msgid "Marathon runner"
 msgstr "Участник марафона"
 
+#: .\marathon_chronotrack\models.py:13
 msgid "Marathon runners"
 msgstr "Участники марафона"
 
+#: .\marathon_chronotrack\models.py:18
 msgid "Male"
 msgstr "Мужчина"
 
+#: .\marathon_chronotrack\models.py:19
 msgid "Female"
 msgstr "Женщина"
 
+#: .\marathon_chronotrack\models.py:24
 msgid "Id of runner got from client"
 msgstr "Id участника полученный от заказчика"
 
+#: .\marathon_chronotrack\models.py:25
 msgid "First name"
 msgstr "Имя"
 
+#: .\marathon_chronotrack\models.py:26
 msgid "Last name"
 msgstr "Фамилия"
 
+#: .\marathon_chronotrack\models.py:27
 msgid "Age"
 msgstr "Возраст"
 
+#: .\marathon_chronotrack\models.py:28
 msgid "Birthday"
 msgstr "День рождения"
 
+#: .\marathon_chronotrack\models.py:29
 msgid "Gender"
 msgstr "Пол"
 
+#: .\marathon_chronotrack\models.py:30
 msgid "Email"
 msgstr "Адрес электронной почты"
 
+#: .\marathon_chronotrack\models.py:31
 msgid "Citizenship"
 msgstr "Гражданство"
 
+#: .\marathon_chronotrack\models.py:32
 msgid "Phone number"
 msgstr "Телефон"
 
+#: .\marathon_chronotrack\models.py:33
 msgid "User registration date"
 msgstr "Дата регистрации пользователя"
 
+#: .\marathon_chronotrack\models.py:34
 msgid "Second phone"
 msgstr "Второй телефон"
 
+#: .\marathon_chronotrack\models.py:35
 msgid "City"
 msgstr "Город"
 
+#: .\marathon_chronotrack\models.py:36
 msgid "Emergency contact name"
 msgstr "Экстренный контакт, имя"
 
+#: .\marathon_chronotrack\models.py:37
 msgid "Emergency contact phone"
 msgstr "Экстренный контакт, телефон"
 
+#: .\marathon_chronotrack\models.py:38
 msgid "T-shirt size"
 msgstr "Размер футболки"
 
+#: .\marathon_chronotrack\models.py:39
 msgid "Running club"
 msgstr "Название бегового клуба"
 
+#: .\marathon_chronotrack\models.py:40
 msgid "Is runner a disabled person"
 msgstr "Участник является человеком с инвалидностью"
 
+#: .\marathon_chronotrack\models.py:41
 msgid "Is runner a professional sportsman"
 msgstr "Участник является спортсменом"
 
+#: .\marathon_chronotrack\models.py:42
 msgid "Is runner a child"
 msgstr "Участник является ребёнком"
 
+#: .\marathon_chronotrack\models.py:43
 msgid "Is runner an elite sportsman"
 msgstr "Участник является элитным спортсменом"
 
+#: .\marathon_chronotrack\models.py:44
 msgid "Marathon registration date and time"
 msgstr "Дата регистрации пользователя на данный марафон"
 
+#: .\marathon_chronotrack\models.py:45
 msgid "Marathon in which runner participates"
 msgstr "Марафон, в котором участвует бегун"
 
+#: .\marathon_chronotrack\models.py:46
 msgid "Route which runner will run on"
 msgstr "Дистанция на котолрой бежит участник"
 
+#: .\marathon_chronotrack\models.py:47
 msgid "Run cluster letter"
 msgstr "Буква бегового кластера"
 
+#: .\marathon_chronotrack\models.py:48
 msgid "Runner number"
 msgstr "Номер участника"
 
+#: .\marathon_chronotrack\models.py:49
 msgid "Current runner place"
 msgstr "Место бегуна в данный момент"
 
+#: .\marathon_chronotrack\models.py:51 .\marathon_common\models.py:19
+#: .\marathon_marathons\models.py:19 .\marathon_marathons\models.py:50
+#: .\marathon_marathons\models.py:68
 msgid "Is active"
 msgstr "Активн_ый"
 
+#: .\marathon_chronotrack\models.py:94
 msgid "Bracket"
-msgstr "Категория"
+msgstr "Возрастыне категории участников"
 
+#: .\marathon_chronotrack\models.py:95
 msgid "Brackets"
 msgstr "Категории"
 
+#: .\marathon_chronotrack\models.py:97
 msgid "Bracket name"
 msgstr "Имя категории"
 
+#: .\marathon_chronotrack\models.py:98
 msgid "Bracket route"
 msgstr "Дистанция марафона, к которой привязана эта категория"
 
+#: .\marathon_chronotrack\models.py:120
 msgid "Timing point"
 msgstr "Точка хронометража"
 
+#: .\marathon_chronotrack\models.py:121
 msgid "Timing points"
 msgstr "Точки хронометража"
 
+#: .\marathon_chronotrack\models.py:123
 msgid "Timing point name"
 msgstr "Название точки хронометража"
 
+#: .\marathon_chronotrack\models.py:124
 msgid "Marathon route of the timing point"
 msgstr "Дистанция марафона, к которой привязана точка хронометража"
 
+#: .\marathon_chronotrack\models.py:133 .\marathon_chronotrack\models.py:134
 msgid "Interval"
-msgstr "Промежуток"
+msgstr "Промежуток дистанции"
 
+#: .\marathon_chronotrack\models.py:136
 msgid "Interval name"
 msgstr "Название промежутка"
 
+#: .\marathon_chronotrack\models.py:146
 msgid "Interval result"
 msgstr "Результат на промежутке"
 
+#: .\marathon_chronotrack\models.py:147
 msgid "Interval results"
 msgstr "Результаты на промежутках"
 
+#: .\marathon_chronotrack\models.py:149
 msgid "Interval of the result measurement"
 msgstr "Промежуток измерений"
 
+#: .\marathon_chronotrack\models.py:150
 msgid "Runner for which results are measured"
 msgstr "Участник измерений"
 
+#: .\marathon_chronotrack\models.py:151
 msgid "Chip time of a runner"
 msgstr "Время 'chip time' участника"
 
+#: .\marathon_common\admin.py:44
+msgid "MCS Administrator control panel"
+msgstr "Панель администратора ЦУМ"
+
+#: .\marathon_common\apps.py:7
 msgid "Other entities"
 msgstr "Другие объекты"
 
-msgid "Mobile App and MCS texts"
-msgstr "Тексты мобильного приложения и ЦУМ"
-
+#: .\marathon_common\models.py:14
 msgid "Photo frame"
 msgstr "Рамка для фото"
 
+#: .\marathon_common\models.py:15
 msgid "Photo frames"
 msgstr "Рамки для фото"
 
+#: .\marathon_common\models.py:17 .\marathon_expo\models.py:36
 msgid "Photo frame image"
 msgstr "Картинка для рамки для фото"
 
+#: .\marathon_common\models.py:22
 #, python-format
 msgid "%(model_name)s #%(id)d"
 msgstr "%(model_name)s №%(id)d"
 
-msgid "Announcement"
-msgstr "Оповещение"
+#: .\marathon_common\models.py:31 .\marathon_common\models.py:48
+msgid "Menu item group"
+msgstr "Группа пунктов меню"
 
-msgid "Announcements"
-msgstr "Оповещения"
+#: .\marathon_common\models.py:32
+msgid "Menu item groups"
+msgstr "Группы пунктов меню"
 
-msgid "Announcement text"
-msgstr "Текст оповещения"
+#: .\marathon_common\models.py:34 .\marathon_common\models.py:47
+msgid "Route for which menu content is set"
+msgstr "Дистанция, для которой задаётся меню"
 
-msgid "Announcement date and time"
-msgstr "Дата и время посылки оповещения"
+#: .\marathon_common\models.py:35
+msgid "Menu item group title"
+msgstr "Название пункта меню"
 
-msgid "Announcement send date and time should be later than the current date and time"
-msgstr "Время посылки оповещения должно быть позднее текущей даты и времени"
+#: .\marathon_common\models.py:44
+msgid "Menu item"
+msgstr "Пункт меню"
 
-msgid "Send only to elite participants"
-msgstr "Послать только элитным спортсменам"
+#: .\marathon_common\models.py:45
+msgid "Menu items"
+msgstr "Пункты меню"
 
+#: .\marathon_common\models.py:49
+msgid "Menu item name used in server code"
+msgstr "Идентификатор пункта меню"
+
+#: .\marathon_common\models.py:49
+msgid "Cannot be edited"
+msgstr "Не нужно редактировать"
+
+#: .\marathon_common\models.py:50
+msgid "Menu item title text"
+msgstr "Название пункта меню"
+
+#: .\marathon_common\models.py:50
+msgid "You can dynamically change menu of the mobile app from here. Changing title of a menu item will change the menu item title in the hamburger menu."
+msgstr "Можно динамически менять названия пунктов меню мобильного приложения."
+
+#: .\marathon_common\models.py:51
+msgid "Contents of a page shown when user clicks menu item"
+msgstr "Содержимое страницы, которая отображается при клике на пункт меню."
+
+#: .\marathon_expo\apps.py:7
+msgid "Marathon Expo"
+msgstr "Выставка (Экспо)"
+
+#: .\marathon_expo\models.py:14
 msgid "Expo stand"
 msgstr "Стэнд выставки"
 
+#: .\marathon_expo\models.py:15
 msgid "Expo stands"
 msgstr "Стэнды выставки"
 
+#: .\marathon_expo\models.py:17
 msgid "Stand name"
 msgstr "Название стэнда"
 
+#: .\marathon_expo\models.py:18
+msgid "Website"
+msgstr "Сайт"
+
+#: .\marathon_expo\models.py:19
+msgid "Stand description, special offers, etc"
+msgstr "Описание стэнда, специальные предложения и т.п."
+
+#: .\marathon_expo\models.py:21
 msgid "X of top left corner of expo stand on the map image"
 msgstr "Координата X верхнего левого угла стэнда на карте (в пикселях)"
 
+#: .\marathon_expo\models.py:22
 msgid "Y of top left corner of expo stand on the map image"
 msgstr "Координата Y верхнего левого угла стэнда на карте (в пикселях)"
 
+#: .\marathon_expo\models.py:23
 msgid "Width of the expo stand on the map image"
 msgstr "Ширина стэнда на карте выставки в пикселях"
 
+#: .\marathon_expo\models.py:24
 msgid "Height of the expo stand on the map image"
 msgstr "Высота стэнда на карте выставки в пикселях"
 
+#: .\marathon_expo\models.py:33
+msgid "Expo map"
+msgstr "Карта выставки"
+
+#: .\marathon_expo\models.py:34
+msgid "Expo maps"
+msgstr "Карты выставки"
+
+#: .\marathon_marathons\apps.py:7
 msgid "Marathons and routes"
 msgstr "Марафоны и дистанции"
 
+#: .\marathon_marathons\models.py:11
 msgid "Marathon"
 msgstr "Марафон"
 
+#: .\marathon_marathons\models.py:12
 msgid "Marathons"
 msgstr "Марафоны"
 
+#: .\marathon_marathons\models.py:14
 msgid "Title of a marathon"
 msgstr "Название марафона"
 
+#: .\marathon_marathons\models.py:15 .\marathon_marathons\models.py:34
 msgid "Time when all marathon activities start"
 msgstr "Время офоциального начала марафона"
 
+#: .\marathon_marathons\models.py:16 .\marathon_marathons\models.py:35
 msgid "Time when all marathon activities end"
 msgstr "Время официального окончания марафона"
 
+#: .\marathon_marathons\models.py:17
 msgid "Chronotrack event Id for this marathon"
 msgstr "Chronotrack Event ID данного мероприятия"
 
+#: .\marathon_marathons\models.py:28
 msgid "Marathon route"
 msgstr "Дистанция марафона"
 
+#: .\marathon_marathons\models.py:29
 msgid "Marathon routes"
 msgstr "Дистанции марафона"
 
+#: .\marathon_marathons\models.py:31
 msgid "Marathon whose route it is"
 msgstr "Марафон, которому принадлежит эта дистанция"
 
+#: .\marathon_marathons\models.py:33
 msgid "Route title"
 msgstr "Название дистанции марафона"
 
+#: .\marathon_marathons\models.py:38
 msgid "GeoJSON of exported Yandex Constructor map of the route"
 msgstr "GeoJSON карты дистанции экспортированной из Яндекс Конструктора"
 
+#: .\marathon_marathons\models.py:42
 msgid "GeoJSON of exported Yandex Constructor map of the start region"
 msgstr "GeoJSON карты старотового городка экспортированной из Яндекс Конструткора"
 
+#: .\marathon_marathons\models.py:45
 msgid "GeoJSON of exported Yandex Constructor map of the finish region"
 msgstr "GeoJSON карты финишного городка экспортированной из Яндекс Конструткора"
 
+#: .\marathon_marathons\models.py:48
 msgid "Chronotrack race Id for this marathon route"
 msgstr "Chronotrack Race ID данной дистанции"
 
+#: .\marathon_marathons\models.py:59
 msgid "Marathon route heights"
 msgstr "Высоты дистанции марафона"
 
+#: .\marathon_marathons\models.py:60
 msgid "Marathon routes heigths"
 msgstr "Высоты дистанций марафона"
 
+#: .\marathon_marathons\models.py:62
 msgid "Route for which heights are specified"
 msgstr "Дистанция для которой указываются высоты"
 
+#: .\marathon_marathons\models.py:63
 msgid "Latitude of the point on the route"
 msgstr "Широта точки на дистанции"
 
+#: .\marathon_marathons\models.py:64
 msgid "longitude of the point on the route"
 msgstr "Долгота точки на дистанции"
 
+#: .\marathon_marathons\models.py:65
 msgid "Elevation of the point in meters"
 msgstr "Высота над уровнем моря точки на дистанции в метрах"
 
+#: .\marathon_marathons\models.py:66
 msgid "Resolution of the point elevation in meters"
 msgstr "Точность определения высоты над уровнем моря в метрах"
+
+#: .\marathon_utils\django.py:9
+#, python-format
+msgid "Can only create 1 %(model_name)s instance"
+msgstr "Можно создать только один экземпляр \"%(model_name)s\""
+
+#~ msgid "Mobile App and MCS texts"
+#~ msgstr "Тексты мобильного приложения и ЦУМ"

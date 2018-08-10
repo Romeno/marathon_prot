@@ -23,7 +23,7 @@ class MarathonRunner(models.Model):
 
     id_external = models.BigIntegerField(verbose_name=_("Id of runner got from client"))
     first_name = models.CharField(max_length=1024, verbose_name=_("First name"))
-    last_name = models.TextField(max_length=1024, verbose_name=_("Last name"))
+    last_name = models.CharField(max_length=1024, verbose_name=_("Last name"))
     age = models.PositiveIntegerField(verbose_name=_("Age"))
     birthday = models.DateField(verbose_name=_("Birthday"))
     gender = models.CharField(choices=GENDER, max_length=1, verbose_name=_("Gender"))

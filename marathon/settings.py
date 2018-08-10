@@ -37,8 +37,9 @@ INSTALLED_APPS = [
 
     'marathon_chronotrack.apps.MarathonChronotrackConfig',
     'marathon_marathons.apps.MarathonMarathonsConfig',
-    'marathon_common.apps.FlatblocksAppConfig',
     'marathon_common.apps.MarathonCommonConfig',
+    'marathon_announcement.apps.MarathonAnnouncementConfig',
+    'marathon_expo.apps.MarathonExpoConfig',
 
     'marathon_medic.apps.MarathonMedicConfig',
     'marathon_signal.apps.MarathonSignalConfig',
@@ -93,6 +94,11 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+##########################################
+# DB
+FIXTURE_DIRS = [os.path.join(BASE_DIR, 'fixtures')]
+
 
 ##########################################
 # Internationalization

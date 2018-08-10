@@ -21,9 +21,5 @@ from . import views
 
 
 urlpatterns = [
-    re_path('routes/(?P<id>\d+)/brackets', views.get_brackets),
-
-    re_path('runners/list', views.get_runners),
-    re_path('runners/(?P<id>\d+)/watch', views.watch_runner),
-    re_path('runners/(?P<id>\d+)/unwatch', views.unwatch_runner),
+    # re_path('', views.unwatch_runner),
 ]
