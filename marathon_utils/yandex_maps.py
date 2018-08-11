@@ -9,17 +9,17 @@ def parse_geojson(geojson):
 
     ret = {
         "route": None,
-        "refresh_zones": [],
-        "catering_zones": [],
-        "toilets": [],
-        "timing_points": [],
-        "kilometers": [],
-        "start": None,
-        "finish": None,
-        "sights": [],
-        "fan_zones": [],
-        "music": [],
-        "relay_race_points": [],
+        "refresh_zones": {"points": []},
+        "catering_zones": {"points": []},
+        "toilets": {"points": []},
+        "timing_points": {"points": []},
+        "kilometers": {"points": []},
+        "start": {"point": []},
+        "finish": {"point": []},
+        "sights": {"points": []},
+        "fan_zones": {"points": []},
+        "music": {"points": []},
+        "relay_race_points": {"points": []},
     }
 
     for feature in d["features"]:
@@ -40,31 +40,31 @@ def parse_geojson(geojson):
                         obj["desc"] = desc
 
                     if caption == "Зона освежения":
-                        ret["refresh_zones"].append(obj)
+                        ret["refresh_zones"]["points"].append(obj)
                     if caption == "Зона питания":
-                        ret["catering_zones"].append(obj)
+                        ret["catering_zones"]["points"].append(obj)
                     if caption == "Туалет":
-                        ret["toilets"].append(obj)
+                        ret["toilets"]["points"].append(obj)
                     if caption == "Точка хронометража":
-                        ret["timing_points"].append(obj)
+                        ret["timing_points"]["points"].append(obj)
                     if caption == "Километр":
                         num = props.get("iconContent")
                         if num:
                             obj["desc"] = num
 
-                        ret["kilometers"].append(obj)
+                        ret["kilometers"]["points"].append(obj)
                     if caption == "Старт":
-                        ret["start"] = obj
+                        ret["start"]["point"] = obj
                     if caption == "Финиш":
-                        ret["finish"] = obj
+                        ret["finish"]["point"] = obj
                     if caption == "Достопримечательность":
-                        ret["sights"].append(obj)
+                        ret["sights"]["points"].append(obj)
                     if caption == "Фан-зона":
-                        ret["fan_zones"].append(obj)
+                        ret["fan_zones"]["points"].append(obj)
                     if caption == "Музыка":
-                        ret["music"].append(obj)
+                        ret["music"]["points"].append(obj)
                     if caption == "Точка передачи эстафеты":
-                        ret["relay_race_points"].append(obj)
+                        ret["relay_race_points"]["points"].append(obj)
 
     return ret
 
