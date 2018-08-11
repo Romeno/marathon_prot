@@ -4,7 +4,7 @@
     "pk": 1,
     "fields": {
         "password": "pbkdf2_sha256$100000$WNnqnJQR8rx1$ALzaez0hbeXojiuEhYEiblh9OkEwXu9JIXmwGaq53qI=",
-        "last_login": "2018-08-10T11:35:11.873",
+        "last_login": "2018-08-11T20:36:06.367",
         "is_superuser": true,
         "username": "admin",
         "first_name": "",
