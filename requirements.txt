@@ -11,4 +11,4 @@ django-grappelli==2.11.1
 django-filebrowser==3.10.1
 Pillow==5.2.0
 googlemaps==3.0.2
-django-tinymce=2.7.0
+django-tinymce==2.7.0
