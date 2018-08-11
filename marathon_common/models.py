@@ -60,3 +60,18 @@ class MenuItem(models.Model):
 
         return super().full_clean()
 
+
+class MapObjectIcon(models.Model):
+    class Meta:
+        db_table = 'marathon_map_icon'
+        verbose_name = _('Map object icon')
+        verbose_name_plural = _('Map object icons')
+
+    object_type_key = models.CharField(max_length=256, verbose_name=_("Object type key"))
+    object_type = models.CharField(max_length=256, verbose_name=_("Object type name"))
+    image = FileBrowseField(max_length=2048, extensions=settings.FILEBROWSER_EXTENSIONS['Image'], format='Image', verbose_name=_("Icon image for map object"))
+
+    def __str__(self):
+        return self.object_type
+
+

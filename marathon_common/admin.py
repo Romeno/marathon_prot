@@ -1,30 +1,8 @@
 from django.contrib import admin
 from django.utils.translation import gettext_lazy as _
 
-# from flatblocks.models import FlatBlock
-# from flatblocks.forms import FlatBlockForm
-from tinymce.widgets import TinyMCE
-
 from . import models
 
-
-# class FlatBlockForm2(FlatBlockForm):
-#     class Meta:
-#         widgets = {
-#             'content': TinyMCE(attrs={'cols': 80, 'rows': 30})
-#         }
-#
-#
-# class FlatBlockAdmin(admin.ModelAdmin):
-#     ordering = ['slug', ]
-#     list_display = ('slug', 'header')
-#     search_fields = ('slug', 'header', 'content')
-#     form = FlatBlockForm2
-
-# class FlatBlockAdmin(admin.ModelAdmin):
-#     ordering = ['slug', ]
-#     list_display = ('slug', 'header')
-#     search_fields = ('slug', 'header', 'content')
 
 class MenuItemGroupAdmin(admin.ModelAdmin):
     list_display = ('title', 'route')
@@ -41,12 +19,27 @@ class MenuItemAdmin(admin.ModelAdmin):
 
         return ['route', 'group', 'name', 'title', 'text']
 
+
+class MapObjectIconAdmin(admin.ModelAdmin):
+    def get_readonly_fields(self, request, obj=None):
+        if not request.user.is_superuser:
+            return ['object_type']
+
+        return []
+
+    def get_fields(self, request, obj=None):
+        if not request.user.is_superuser:
+            return ['object_type', 'image']
+
+        return ['object_type_key', 'object_type', 'image']
+
+
 admin.site.register(models.PhotoFrame)
-#
-# admin.site.unregister(FlatBlock)
-# admin.site.register(FlatBlock, FlatBlockAdmin)
+
 admin.site.register(models.MenuItem, MenuItemAdmin)
 admin.site.register(models.MenuItemGroup, MenuItemGroupAdmin)
+
+admin.site.register(models.MapObjectIcon, MapObjectIconAdmin)
 
 # title shown on index admin page
 admin.site.index_title = _('MCS Administrator control panel')

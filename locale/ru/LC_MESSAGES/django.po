@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-08-10 11:38+0300\n"
+"POT-Creation-Date: 2018-08-11 19:13+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -198,7 +198,7 @@ msgstr "Номер участника"
 msgid "Current runner place"
 msgstr "Место бегуна в данный момент"
 
-#: .\marathon_chronotrack\models.py:51 .\marathon_common\models.py:19
+#: .\marathon_chronotrack\models.py:51 .\marathon_common\models.py:20
 #: .\marathon_marathons\models.py:19 .\marathon_marathons\models.py:50
 #: .\marathon_marathons\models.py:68
 msgid "Is active"
@@ -264,7 +264,7 @@ msgstr "Участник измерений"
 msgid "Chip time of a runner"
 msgstr "Время 'chip time' участника"
 
-#: .\marathon_common\admin.py:44
+#: .\marathon_common\admin.py:45
 msgid "MCS Administrator control panel"
 msgstr "Панель администратора ЦУМ"
 
@@ -272,66 +272,90 @@ msgstr "Панель администратора ЦУМ"
 msgid "Other entities"
 msgstr "Другие объекты"
 
-#: .\marathon_common\models.py:14
+#: .\marathon_common\models.py:15
 msgid "Photo frame"
 msgstr "Рамка для фото"
 
-#: .\marathon_common\models.py:15
+#: .\marathon_common\models.py:16
 msgid "Photo frames"
 msgstr "Рамки для фото"
 
-#: .\marathon_common\models.py:17 .\marathon_expo\models.py:36
+#: .\marathon_common\models.py:18 .\marathon_expo\models.py:36
 msgid "Photo frame image"
 msgstr "Картинка для рамки для фото"
 
-#: .\marathon_common\models.py:22
+#: .\marathon_common\models.py:23
 #, python-format
 msgid "%(model_name)s #%(id)d"
 msgstr "%(model_name)s №%(id)d"
 
-#: .\marathon_common\models.py:31 .\marathon_common\models.py:48
+#: .\marathon_common\models.py:32 .\marathon_common\models.py:49
 msgid "Menu item group"
 msgstr "Группа пунктов меню"
 
-#: .\marathon_common\models.py:32
+#: .\marathon_common\models.py:33
 msgid "Menu item groups"
 msgstr "Группы пунктов меню"
 
-#: .\marathon_common\models.py:34 .\marathon_common\models.py:47
+#: .\marathon_common\models.py:35 .\marathon_common\models.py:48
 msgid "Route for which menu content is set"
 msgstr "Дистанция, для которой задаётся меню"
 
-#: .\marathon_common\models.py:35
+#: .\marathon_common\models.py:36
 msgid "Menu item group title"
 msgstr "Название пункта меню"
 
-#: .\marathon_common\models.py:44
+#: .\marathon_common\models.py:45
 msgid "Menu item"
 msgstr "Пункт меню"
 
-#: .\marathon_common\models.py:45
+#: .\marathon_common\models.py:46
 msgid "Menu items"
 msgstr "Пункты меню"
 
-#: .\marathon_common\models.py:49
+#: .\marathon_common\models.py:50
 msgid "Menu item name used in server code"
 msgstr "Идентификатор пункта меню"
 
-#: .\marathon_common\models.py:49
+#: .\marathon_common\models.py:50
 msgid "Cannot be edited"
 msgstr "Не нужно редактировать"
 
-#: .\marathon_common\models.py:50
+#: .\marathon_common\models.py:51
 msgid "Menu item title text"
 msgstr "Название пункта меню"
 
-#: .\marathon_common\models.py:50
+#: .\marathon_common\models.py:51
 msgid "You can dynamically change menu of the mobile app from here. Changing title of a menu item will change the menu item title in the hamburger menu."
 msgstr "Можно динамически менять названия пунктов меню мобильного приложения."
 
-#: .\marathon_common\models.py:51
+#: .\marathon_common\models.py:52
 msgid "Contents of a page shown when user clicks menu item"
 msgstr "Содержимое страницы, которая отображается при клике на пункт меню."
+
+#: .\marathon_common\models.py:59
+msgid "Route of the group is not the same as route of the menu item"
+msgstr "Дистанция группы пунктов меню отличается от дистанции пункта меню"
+
+#: .\marathon_common\models.py:67
+msgid "Map object icon"
+msgstr "Иконка объекта на карте"
+
+#: .\marathon_common\models.py:68
+msgid "Map object icons"
+msgstr "Иконки объектов на карте"
+
+#: .\marathon_common\models.py:70
+msgid "Object type key"
+msgstr "Ключ типа объектов"
+
+#: .\marathon_common\models.py:71
+msgid "Object type name"
+msgstr "Название типа объектов"
+
+#: .\marathon_common\models.py:72
+msgid "Icon image for map object"
+msgstr "Изображение для иконки объекта на карте"
 
 #: .\marathon_expo\apps.py:7
 msgid "Marathon Expo"
@@ -384,6 +408,18 @@ msgstr "Карты выставки"
 #: .\marathon_marathons\apps.py:7
 msgid "Marathons and routes"
 msgstr "Марафоны и дистанции"
+
+#: .\marathon_marathons\forms.py:48
+msgid "Error while parsing map GeoJSON of a route map. Make sure all values are set according to agreement or contact system administrator."
+msgstr "Ошибка во время анализа GeoJSON файлы с дистанцией маршрута. Убедитесь, что все параметры точек на карте установлены в соответствие с соглашением о именовании объектов."
+
+#: .\marathon_marathons\forms.py:68
+msgid "Error while parsing map GeoJSON of a start region map. Make sure all values are set according to agreement or contact system administrator."
+msgstr "Ошибка во время анализа GeoJSON файлы с картой стартового городка. Убедитесь, что все параметры точек на карте установлены в соответствие с соглашением о именовании объектов."
+
+#: .\marathon_marathons\forms.py:88
+msgid "Error while parsing map GeoJSON of a finish region map. Make sure all values are set according to agreement or contact system administrator."
+msgstr "Ошибка во время анализа GeoJSON файлы с картой финишного городка. Убедитесь, что все параметры точек на карте установлены в соответствие с соглашением о именовании объектов."
 
 #: .\marathon_marathons\models.py:11
 msgid "Marathon"
