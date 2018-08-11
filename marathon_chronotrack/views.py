@@ -1,4 +1,5 @@
 import math
+import datetime
 
 from django.shortcuts import render
 from django.http import JsonResponse
@@ -17,13 +18,13 @@ def get_brackets(req, id):
 
 
 def get_runners(req):
-    from marathon_utils.random_utils import random_datetime
     import random
 
     limit = get_uint_query_param(req, 'limit', 50)
     if limit == 0:
         raise InvalidQueryParamValueException("'limit' should be > 0")
 
+    route_id = get_uint_query_param(req, 'route_id', None)
     offset = get_uint_query_param(req, 'offset', 0)
     search = req.GET.get('search')
     order_by = req.GET.get('order_by', 'bib_asc')
@@ -31,6 +32,10 @@ def get_runners(req):
         raise InvalidQueryParamValueException("'order_by' should be one of 'alphabet_asc', 'alphabet_desc', 'bib_asc', 'bib_desc', 'place_asc' or 'place_desc'")
 
     qs = models.MarathonRunner.objects.all()
+
+    if route_id is not None:
+        qs = qs.filter(route__pk=route_id)
+
     if order_by:
         if order_by == "alphabet_asc":
             qs = qs.order_by("last_name")
@@ -63,44 +68,52 @@ def get_runners(req):
         "overall_count": count,
         "pages": page_count,
         "current_page": int(math.ceil((offset + 1) / limit)),
-        "runners": [{
-                "runnerId": r.pk,
-                "runnerNumber": r.runner_number,
-                "runnerName": r.first_name + " " + r.last_name,
-                "age": r.age,
-                "birthday": r.birthday.timestamp(),
-                "gender": r.gender,
-                "email": r.email,
-                "phone": r.phone,
-                "user_register_date": r.user_register_date.timestamp(),
-                "second_phone": r.second_phone,
-                "city": r.city,
-                "emergency_contact": r.emergency_contact,
-                "distance": r.route.name,
-                "t_shirt_size": r.t_shirt_size,
-                "running_club": r.running_club,
-                "is_disabled" : r.is_disabled,
-                "is_prof": r.is_prof,
-                "is_child": r.is_child,
-                "is_elite": r.is_elite,
-                "marathon_registration_datetime": r.marathon_registration_datetime,
-                "cluster_run_letter": r.cluster_run_letter,
-                "citizenship": r.citizenship,
-                "place": r.place,
-                "times": [{
-                    "interval_id": 0,
-                    "timing_point_name": "some name",
-                    "chip_time": 0,
-                    "place": 0,
-                    "tempo": 0
-                }],
-                "category": {
-                    "category_id": 0,
-                    "name": "M40-44"
-                },
-                "isAcceleration": random.choice([True, False]),
-            } for r in runners]
+        "runners": []
     }
+
+    for r in runners:
+        dob = [r.birthday.day, r.birthday.month, r.birthday.year]
+        urd = [r.user_register_date.day, r.user_register_date.month, r.user_register_date.year]
+        mrd = r.marathon_registration_datetime.timestamp()
+
+        runners_json["runners"].append({
+            "runnerId": r.pk,
+            "runnerNumber": r.runner_number,
+            "runnerName": r.first_name + " " + r.last_name,
+            "age": r.age,
+            "birthday": dob,
+            "gender": r.gender,
+            "email": r.email,
+            "phone": r.phone,
+            "user_register_date": urd,
+            "second_phone": r.second_phone,
+            "city": r.city,
+            "emergency_contact": r.emergency_contact,
+            "route_id": r.route.pk,
+            "route_name": r.route.name,
+            "t_shirt_size": r.t_shirt_size,
+            "running_club": r.running_club,
+            "is_disabled": r.is_disabled,
+            "is_prof": r.is_prof,
+            "is_child": r.is_child,
+            "is_elite": r.is_elite,
+            "marathon_registration_datetime": mrd,
+            "cluster_run_letter": r.cluster_run_letter,
+            "citizenship": r.citizenship,
+            "place": r.place,
+            "times": [{
+                "interval_id": 0,
+                "timing_point_name": "some name",
+                "chip_time": 0,
+                "place": 0,
+                "tempo": 0,
+            }],
+            "category": {
+                "category_id": 0,
+                "name": "M40-44",
+            },
+            "isAcceleration": random.choice([True, False]),
+        })
 
     return JsonResponse(runners_json)
 

@@ -55,7 +55,7 @@ class MenuItem(models.Model):
         return self.title
 
     def full_clean(self, exclude=None, validate_unique=True, **kwargs):
-        if self.route.pk != self.group.route.pk:
+        if self.group and self.route.pk != self.group.route.pk:
             raise ValidationError(_('Route of the group is not the same as route of the menu item'))
 
         return super().full_clean()

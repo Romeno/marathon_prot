@@ -38,7 +38,7 @@ def get_settings(req):
 
 
 def get_route_info(req, id):
-    top_level_menu = models.MenuItemGroup.objects.all()
+    top_level_menu = models.MenuItemGroup.objects.filter(route__pk=id)
 
     info = {
         "menu": []
@@ -51,7 +51,7 @@ def get_route_info(req, id):
             ]
         }
 
-        menu_items = top_level_item.menuitem_set.objects.all()
+        menu_items = top_level_item.menuitem_set.all()
         for menu_item in menu_items:
             top_level_item_dict["menu_items"].append({
                 # "en": menu_item.name,
@@ -61,7 +61,7 @@ def get_route_info(req, id):
 
         info["menu"].append(top_level_item_dict)
 
-    menu_items_no_top_level = models.MenuItem.objects.filter(group=None)
+    menu_items_no_top_level = models.MenuItem.objects.filter(group=None, route__pk=id)
     for mintl in menu_items_no_top_level:
         info["menu"].append({
             # "en": mintl.name,
