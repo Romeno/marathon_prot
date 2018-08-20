@@ -96,6 +96,7 @@ class CtBracket(models.Model):
 
     name = models.CharField(max_length=1024, verbose_name=_("Bracket name"))
     route = models.ForeignKey(MarathonRoute, on_delete=models.CASCADE, verbose_name=_("Bracket route"))
+    ct_bracket_id = models.IntegerField(verbose_name=_("Bracket id"))
     # start_time = models.DateTimeField(blank=True, null=True, verbose_name=_("Time when all marathon activities start"))
     # end_time = models.DateTimeField(blank=True, null=True, verbose_name=_("Time when all marathon activities end"))
     # # map_url = models.CharField(max_length=2083, verbose_name=_("Url of a map created using Yandex Maps constructor"))
@@ -134,20 +135,22 @@ class CtInterval(models.Model):
         verbose_name_plural = _('Interval')
 
     name = models.CharField(max_length=1024, verbose_name=_("Interval name"))
-    # route = models.ForeignKey(MarathonRoute, on_delete=models.CASCADE, verbose_name=_("Marathon route of the interval"))
+    ct_interval_id = models.IntegerField(verbose_name=_("Chronotrack interval id"))
+    route = models.ForeignKey(MarathonRoute, null=True, on_delete=models.CASCADE, verbose_name=_("Marathon route of the interval"))
 
     def __str__(self):
         return self.name
 
 
-class CtIntervalResult(models.Model):
+class CtResult(models.Model):
     class Meta:
-        db_table = 'ct_interval_result'
-        verbose_name = _('Interval result')
-        verbose_name_plural = _('Interval results')
+        db_table = 'ct_result'
+        verbose_name = _('Runner result')
+        verbose_name_plural = _('Runner results')
 
     interval = models.ForeignKey(CtInterval, on_delete=models.CASCADE, verbose_name=_("Interval of the result measurement"))
     runner = models.ForeignKey(MarathonRunner, on_delete=models.CASCADE, verbose_name=_("Runner for which results are measured"))
+    bracket = models.ForeignKey(CtBracket, on_delete=models.CASCADE, verbose_name=_("Bracket for which results are measured"))
     chip_time = models.IntegerField(verbose_name=_("Chip time of a runner"))
     # timestamp = models.DateTimeField(verbose_name=_("Time of day when runner completed the interval"))
 

@@ -1,14 +1,13 @@
 import math
 import datetime
 
-import chronotrack as ct
-
 from django.shortcuts import render
 from django.http import JsonResponse
 
 from marathon_marathons.models import MarathonRoute
 from marathon_utils.exceptions import InvalidQueryParamValueException, DoesNotExistException
 from marathon_utils.query import get_uint_query_param
+from marathon_utils.chronotrack import api as ct
 from . import models
 
 
@@ -76,7 +75,8 @@ def get_runners(req):
 
     routes = MarathonRoute.objects.filter(route_id)
     if routes:
-        race_id = routes.ct_race_id
+        r = routes.first()
+        race_id = r.ct_race_id
     else:
         raise DoesNotExistException("route with id {} does not exist".format(route_id))
 
@@ -85,6 +85,9 @@ def get_runners(req):
         urd = [r.user_register_date.day, r.user_register_date.month, r.user_register_date.year]
         mrd = r.marathon_registration_datetime.timestamp()
 
+        results = ct.results(race_id=race_id)
+
+
         runner_times = [{
                 "chip_time": 0,
                 "timing_point_name": "some name",
@@ -92,8 +95,6 @@ def get_runners(req):
                 "place": 0,
                 "interval_id": 0
         }]
-
-        # ct.results()
 
         runner_data = {
             "runnerId": r.pk,
