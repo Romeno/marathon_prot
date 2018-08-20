@@ -1,6 +1,6 @@
-from django.core.management.base import BaseCommand, CommandError
+import sys
 
-import chronotrack as ct
+from django.core.management.base import BaseCommand, CommandError
 
 from marathon_chronotrack.models import MarathonRunner
 from marathon_marathons.models import Marathon
@@ -17,10 +17,21 @@ At least 1 marathon should be created and event_id should be set to correspondin
         pass
 
     def handle(self, *args, **options):
-        count = options.get('count')
+        sys.path.insert(0, 'I:\Romeno\Projects\PyCharm\chronotrack')
 
-        cur_marathon = Marathon.objects.filter(is_active=True).last()
+        import chronotrack as ct
+
+        api = ct.Chronotrack(client_id="b23c9855", user_id="chronotrack@moscowmarathon.org", user_pass="chronodev%77")
+        api.set_auth_type(ct.AUTH_SIMPLE)
+
+        cur_marathon = Marathon.objects.filter(is_active=True).first()
         eid = cur_marathon.ct_event_id
 
-        races = ct.races(eid)
+        event = api.event(eid)
+
+        races = api.races(eid)
+
+        pass
+
+
 

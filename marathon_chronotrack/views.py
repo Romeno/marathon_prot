@@ -1,10 +1,13 @@
 import math
 import datetime
 
+import chronotrack as ct
+
 from django.shortcuts import render
 from django.http import JsonResponse
 
-from marathon_utils.exceptions import InvalidQueryParamValueException
+from marathon_marathons.models import MarathonRoute
+from marathon_utils.exceptions import InvalidQueryParamValueException, DoesNotExistException
 from marathon_utils.query import get_uint_query_param
 from . import models
 
@@ -71,12 +74,28 @@ def get_runners(req):
         "runners": []
     }
 
+    routes = MarathonRoute.objects.filter(route_id)
+    if routes:
+        race_id = routes.ct_race_id
+    else:
+        raise DoesNotExistException("route with id {} does not exist".format(route_id))
+
     for r in runners:
         dob = [r.birthday.day, r.birthday.month, r.birthday.year]
         urd = [r.user_register_date.day, r.user_register_date.month, r.user_register_date.year]
         mrd = r.marathon_registration_datetime.timestamp()
 
-        runners_json["runners"].append({
+        runner_times = [{
+                "chip_time": 0,
+                "timing_point_name": "some name",
+                "tempo": 0,
+                "place": 0,
+                "interval_id": 0
+        }]
+
+        # ct.results()
+
+        runner_data = {
             "runnerId": r.pk,
             "runnerNumber": r.runner_number,
             "runnerName": r.first_name + " " + r.last_name,
@@ -101,19 +120,15 @@ def get_runners(req):
             "cluster_run_letter": r.cluster_run_letter,
             "citizenship": r.citizenship,
             "place": r.place,
-            "times": [{
-                "interval_id": 0,
-                "timing_point_name": "some name",
-                "chip_time": 0,
-                "place": 0,
-                "tempo": 0,
-            }],
+            "times": runner_times,
             "category": {
                 "category_id": 0,
                 "name": "M40-44",
             },
             "isAcceleration": random.choice([True, False]),
-        })
+        }
+
+        runners_json["runners"].append(runner_data)
 
     return JsonResponse(runners_json)
 

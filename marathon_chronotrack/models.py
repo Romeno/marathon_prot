@@ -149,9 +149,8 @@ class CtIntervalResult(models.Model):
     interval = models.ForeignKey(CtInterval, on_delete=models.CASCADE, verbose_name=_("Interval of the result measurement"))
     runner = models.ForeignKey(MarathonRunner, on_delete=models.CASCADE, verbose_name=_("Runner for which results are measured"))
     chip_time = models.IntegerField(verbose_name=_("Chip time of a runner"))
+    # timestamp = models.DateTimeField(verbose_name=_("Time of day when runner completed the interval"))
 
     # def __str__(self):
     #     return self.name
-
-
 
